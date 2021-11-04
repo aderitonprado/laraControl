@@ -1,18 +1,19 @@
+
 @media print {
 
-  body {
-    margin: 1cm 0.5cm;
-    padding: 0;
-    line-height: 1.2em;
+    body {
+      margin: 1cm 0.5cm;
+      padding: 0;
+      line-height: 1.2em;
+    }
+  
+    table, tr, td, th {
+      border: 1px solid #eee;
+    }
+  
+    .noprint {
+      visibility: hidden;
+      display: none;
+    }
+  
   }
-
-  table, tr, td, th {
-    border: 1px solid #eee;
-  }
-
-  .noprint {
-    visibility: hidden;
-    display: none;
-  }
-
-}
