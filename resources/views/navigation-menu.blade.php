@@ -16,10 +16,6 @@
                 <li><a href="#" class="nav-link px-2 link-dark">Portaria</a></li>
             </ul>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-            </form>
-
             <div class="dropdown text-end">
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
                     data-bs-toggle="dropdown" aria-expanded="false">
