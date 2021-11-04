@@ -1,12 +1,11 @@
 <div class="container">
+    <x-slot name="header">
+        <h1>Relatório de Abastecimentos</h1>
 
-    <h1 class="yesprint bs-gray">Relatório de Abastecimentos</h1>
-
-    <div class="mt-3 mb-3 ml-auto noprint">
-        <a href="#" onclick="window.print();" class="btn btn-info">
-            {{ __('Imprimir') }}
-        </a>
-    </div>
+        <div class="mt-3 mb-3 ml-auto noprint">
+            <a href="#" onclick="window.print();" class="btn btn-info">Imprimir</a>
+        </div>
+    </x-slot>
 
     <div class="row mb-3 noprint">
         <div class="col-sm-3">
