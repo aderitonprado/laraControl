@@ -1,13 +1,14 @@
 <div class="container">
-    <h1>Relatório de Abastecimentos</h1>
 
-    <div class="m-3 ml-auto">
-        <a href="#" wire:click="exportPDF()" class="btn btn-info">
-            {{ __('Export PDF') }}
+    <h1 class="yesprint bs-gray">Relatório de Abastecimentos</h1>
+
+    <div class="mt-3 mb-3 ml-auto noprint">
+        <a href="#" onclick="window.print();" class="btn btn-info">
+            {{ __('Imprimir') }}
         </a>
     </div>
 
-    <div class="row mb-3">
+    <div class="row mb-3 noprint">
         <div class="col-sm-3">
             <div class="type">
                 <span>Carregar</span>
@@ -46,28 +47,26 @@
         </div>
     </div>
 
+    <table style="width: 100%; text-align: left; margin-bottom:40px;">
+        <thead>
+            <tr style="background-color: #eee; text-align: left;">
+                <th>Data</th>
+                <th>Bomba</th>
+                <th>Frota</th>
+                <th>Quantidade</th>
+            </tr>
+        </thead>
 
-    <div class="row">
-        <table style="width: 100%; text-align: left; margin-bottom:40px;">
-            <thead>
-                <tr style="background-color: #eee; text-align: left;">
-                    <th>Data</th>
-                    <th>Bomba</th>
-                    <th>Frota</th>
-                    <th>Quantidade</th>
+        <tbody>
+            @foreach ($supplies as $item)
+                <tr>
+                    <td>{{ $item->supply_date->format('d-m-Y') }}</td>
+                    <td>{{ $item->supply_pump }}</td>
+                    <td>{{ $item->vehicles_fleet }}</td>
+                    <td>{{ $item->qtd }}</td>
                 </tr>
-            </thead>
+            @endforeach
+        </tbody>
+    </table>
 
-            <tbody>
-                @foreach ($supplies as $item)
-                    <tr>
-                        <td>{{ $item->supply_date->format('d-m-Y') }}</td>
-                        <td>{{ $item->supply_pump }}</td>
-                        <td>{{ $item->vehicles_fleet }}</td>
-                        <td>{{ $item->qtd }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
 </div>

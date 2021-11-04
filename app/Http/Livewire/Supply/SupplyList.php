@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Supply;
 use Livewire\WithPagination;
 use App\Models\Supply;
 use Livewire\Component;
-use PDF;
 
 
 class SupplyList extends Component
@@ -54,18 +53,6 @@ class SupplyList extends Component
 
         session()->flash('message', 'Registro removido com sucesso!');
 
-    }
-
-    public function exportPDF()
-    {
-        dd('teste');
-
-        $supplies = Supply::all();
-        $view = view('livewire.supply.supply-list')->with(compact('supplies'));
-        $html = $view->render();
-        $pdf = PDF::loadHTML($html)->save(public_path() . '/supply.pdf');
-
-        $this->redirect('/supply.pdf');
     }
 
 }
