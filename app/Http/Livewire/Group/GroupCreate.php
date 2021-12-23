@@ -19,6 +19,10 @@ class GroupCreate extends Component
         ]);
 
         session()->flash('message', 'Grupo '.$this->description.' criado com sucesso!');
+
+        //sleep(2);
+
+        return redirect('/groups');
     }
 
     public function render()
