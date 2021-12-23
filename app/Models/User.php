@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Supply::class);
     }
+    
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
+    }
 }
