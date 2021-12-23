@@ -8,12 +8,26 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"
-                        class="nav-link px-2 link-secondary">{{ __('Dashboard') }}</a></li>
-                <li><a href="{{ route('supplies.index') }}" :active="request()->routeIs('supplies.index')"
-                        class="nav-link px-2 link-dark">{{ __('Posto') }}</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Equipamentos</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Portaria</a></li>
+                <li>
+                    <a href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"
+                        class="nav-link px-2 link-secondary">{{ __('Dashboard') }}</a>
+                </li>
+
+                <li>
+                    <a href="{{ route('supplies.index') }}" :active="request()->routeIs('supplies.index')"
+                        class="nav-link px-2 link-dark">{{ __('Posto') }}</a>
+                </li>
+
+                <li>
+                    <a href="{{ route('groups.index') }}" :active="request()->routeIs('groups.index')"
+                        class="nav-link px-2 link-dark">{{ __('Grupos') }}</a>
+                </li>
+
+                <li>
+                    <a href="{{ route('equipaments.index') }}" :active="request()->routeIs('equipaments.index')"
+                        class="nav-link px-2 link-dark">{{ __('Equipamentos') }}</a>
+                </li>
+
             </ul>
 
             <div class="dropdown text-end">
