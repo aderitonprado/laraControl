@@ -15,6 +15,13 @@ class CreateEquipamentsTable extends Migration
     {
         Schema::create('equipaments', function (Blueprint $table) {
             $table->id();
+            $table->string('description');
+            $table->string('description_aux')->nullable();
+            $table->string('obs')->nullable();
+            $table->foreignId('group_id')->constrained()->cascadeOnDelete();
+            $table->string('serial')->nullable();
+            $table->integer('status');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
