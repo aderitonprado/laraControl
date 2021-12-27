@@ -15,4 +15,9 @@ class Equipament extends Model
     {
         return $this->belongsTo(Group::class);
     }
+
+    Public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
