@@ -26,7 +26,7 @@
 
                 <button 
                     type="submit" 
-                    class="btn btn-lg btn-pill btn-success"
+                    class="btn btn-pill btn-success"
                     >
                     Criar Grupo
                 </button>
