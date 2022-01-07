@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Supply;
 
-use App\Models\Supply;
 use Livewire\Component;
 use App\Helpers\CalculaQtd;
 
