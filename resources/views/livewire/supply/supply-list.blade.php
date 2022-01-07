@@ -10,14 +10,6 @@
 
     <div class="row mb-3 noprint">
 
-        <!--
-                <div class="col-sm-3">
-                    <div class="search">
-                        <span>Buscar</span>
-                        <input type="text" wire:model="search" class="form-control">
-                    </div>
-                </div> -->
-
         <div class="col-sm-3">
             <div class="type">
                 <span>Carregar</span>
