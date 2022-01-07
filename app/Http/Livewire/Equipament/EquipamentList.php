@@ -56,4 +56,15 @@ class EquipamentList extends Component
 
         return view('livewire.equipament.equipament-list', compact('equipaments'));
     }
+
+    public function remove($equipament)
+    {
+
+        $equip = Equipament::find($equipament);
+        
+        $equip->delete();
+
+        session()->flash('message', 'Equipamento '.$equip->description.' removido com sucesso!');
+
+    }
 }
