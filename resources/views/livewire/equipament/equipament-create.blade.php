@@ -84,7 +84,7 @@
                             </select>
                         </div>
 
-                        @error('equipament.group_id')
+                        @error('equipament.status')
                             <p class="text-danger"><small>{{ $message }}</small></p>
                         @enderror
                     </div>
