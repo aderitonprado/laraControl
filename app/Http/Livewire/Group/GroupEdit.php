@@ -25,7 +25,6 @@ class GroupEdit extends Component
 
         $this->group->update([
             'description' => $this->description,
-            //'userid_update'    => auth()->user()->id,
 
         ]);
 
