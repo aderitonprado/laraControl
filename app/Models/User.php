@@ -68,4 +68,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Group::class);
     }
+
+    public function equipaments()
+    {
+        return $this->hasMany(Equipament::class);
+    }
 }
