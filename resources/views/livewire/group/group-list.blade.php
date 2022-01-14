@@ -51,9 +51,9 @@
             @foreach ($groups as $group)
 
                 <tr>
-                    <td>{{ $group->id }}</td>
-                    <td>{{ $group->description }}</td>
-                    <td>{{ $group->created_at->format('d-m-Y') }}</td>
+                    <td>{{ $group->id           != null ? $group->id : '' }}</td>
+                    <td>{{ $group->description  != null ? $group->description : ''}}</td>
+                    <td>{{ $group->created_at   != null ? $group->created_at->format('d-m-Y') : '' }}</td>
                     <td>
                         <a href="{{ route('groups.show', $group->id) }}" class="btn btn-sm btn-info">Ver
                         </a>
