@@ -65,12 +65,12 @@
             @foreach ($equipaments as $equip)
 
                 <tr>
-                    <td>{{ $equip->id }}</td>
-                    <td>{{ $equip->description }}</td>
-                    <td>{{ $equip->group_id }}</td>
-                    <td>{{ $equip->serial }}</td>
-                    <td>{{ $equip->status == 1 ? 'Ativo' : 'Inativo' }}</td>
-                    <td>{{ $equip->created_at->format('d-m-Y') }}</td>
+                    <td>{{ $equip->id           != null ? $equip->id : '' }}</td>
+                    <td>{{ $equip->description  != null ? $equip->description : '' }}</td>
+                    <td>{{ $equip->group_id     != null ? $equip->group_id : '' }}</td>
+                    <td>{{ $equip->serial       != null ? $equip->serial : '' }}</td>
+                    <td>{{ $equip->status       == 1    ? 'Ativo' : 'Inativo' }}</td>
+                    <td>{{ $equip->created_at   != null ? $equip->created_at->format('d-m-Y') : '' }}</td>
                     <td>
                         <a href="{{ route('equipaments.show', $equip->id) }}" class="btn btn-sm btn-info">Ver
                         </a>
