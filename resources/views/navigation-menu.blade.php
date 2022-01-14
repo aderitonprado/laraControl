@@ -28,6 +28,21 @@
                         class="nav-link px-2 link-dark">{{ __('Equipamentos') }}</a>
                 </li>
 
+                <li>
+                    <a href="{{ route('equipaments.index') }}" :active="request()->routeIs('equipaments.index')"
+                        class="d-block nav-link link-dark text-decoration-none dropdown-toggle px-2" id="dropdownRequisition"
+                        data-bs-toggle="dropdown" aria-expanded="false">{{ __('Movimentação') }}
+                    </a>
+                    <ul class="dropdown-menu text-small" aria-labelledby="dropdownRequisition" style="">
+                        <li><a class="dropdown-item" href="#">{{ __('Requisições') }}</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">{{ __('Requisições') }}</a></li>
+                    </ul>
+
+                </li>
+
             </ul>
 
             <div class="dropdown text-end">
