@@ -18,6 +18,12 @@ use App\Http\Livewire\Equipament\EquipamentList;
 use App\Http\Livewire\Equipament\EquipamentEdit;
 use App\Http\Livewire\Equipament\EquipamentShow;
 
+/** Compomente Requisitions */
+use App\Http\Livewire\Requisition\RequisitionCreate;
+use App\Http\Livewire\Requisition\RequisitionList;
+use App\Http\Livewire\Requisition\RequisitionEdit;
+use App\Http\Livewire\Requisition\RequisitionShow;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -57,6 +63,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/show/{equipament}', EquipamentShow::class)->name('show');
         Route::get('/create', EquipamentCreate::class)->name('create');
         Route::get('/edit/{equipament}', EquipamentEdit::class)->name('edit');
+
+    });
+
+    Route::prefix('requisitions')->name('requisitions.')->group(function(){
+        
+        Route::get('/', RequisitionList::class)->name('index');
+        Route::get('/create', RequisitionCreate::class)->name('create');
+        Route::get('/edit/{requisition}', RequisitionEdit::class)->name('edit');
+        Route::get('/show/{requisition}', RequisitionShow::class)->name('show');
 
     });
 });
