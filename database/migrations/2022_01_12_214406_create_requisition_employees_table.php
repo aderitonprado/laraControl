@@ -15,9 +15,9 @@ class CreateRequisitionEmployeesTable extends Migration
     {
         Schema::create('requisition_employees', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('func_req_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('requisition_id')->constrained()->cascadeOnDelete();
             $table->bigInteger('func_mat');
-            $table->string('func_nome', 80);
+            $table->string('func_name', 80);
             $table->string('func_cpf', 11);
             $table->timestamps();
         });

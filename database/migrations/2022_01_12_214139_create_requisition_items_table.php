@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Requisition;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,9 +16,10 @@ class CreateRequisitionItemsTable extends Migration
     {
         Schema::create('requisition_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_req_number')->constrained()->cascadeOnDelete();
-            $table->foreignId('item_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('item_req_id')->constrained()->cascadeOnDelete();
+            $table->string('req_number');
+            $table->foreignId('requisition_id')->constrained()->cascadeOnDelete();
+            $table->integer('item_id');
+            $table->integer('item_qtd');
             $table->timestamps();
         });
     }

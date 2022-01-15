@@ -15,10 +15,11 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->string('req_number');
-            $table->foreignId('item_id')->constrained()->cascadeOnDelete();
-            $table->char('estoque_tipo_mov', 1);
-            $table->integer('estoque_qtd');
+            $table->string('doc_number');
+            $table->foreignId('requisition_item_id')->constrained()->cascadeOnDelete();
+            $table->char('stock_mov_type', 1);
+            $table->integer('stock_qtd');
+            $table->integer('stock_balance');
             $table->timestamps();
         });
     }
