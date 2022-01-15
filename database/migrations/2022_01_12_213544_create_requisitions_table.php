@@ -16,7 +16,7 @@ class CreateRequisitionsTable extends Migration
         Schema::create('requisitions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('req_user_id')->constrained()->cascadeOnDelete();
-            $table->string('req_number');
+            $table->string('req_number', 9)->unique();
             $table->string('req_obs')->nullable();
             $table->timestamps();
         });
