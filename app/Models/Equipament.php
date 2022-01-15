@@ -20,4 +20,14 @@ class Equipament extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function requisitions()
+    {
+        return $this->belongsTo(Requisition::class);
+    }
+
+    public function stocks()
+    {
+        return $this->hasOne(Stock::class);
+    }
 }
