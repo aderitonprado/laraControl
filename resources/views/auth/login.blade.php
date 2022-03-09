@@ -11,21 +11,13 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="https://getbootstrap.com/docs/5.1/assets/img/favicons/apple-touch-icon.png"
-        sizes="180x180">
-    <link rel="icon" href="https://getbootstrap.com/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32"
-        type="image/png">
-    <link rel="icon" href="https://getbootstrap.com/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16"
-        type="image/png">
-    <link rel="manifest" href="https://getbootstrap.com/docs/5.1/assets/img/favicons/manifest.json">
-    <link rel="mask-icon" href="https://getbootstrap.com/docs/5.1/assets/img/favicons/safari-pinned-tab.svg"
-        color="#7952b3">
-    <link rel="icon" href="https://getbootstrap.com/docs/5.1/assets/img/favicons/favicon.ico">
+    <link rel="apple-touch-icon" href="{{ asset('assets/img/favicons/apple-touch-icon.png') }} " sizes="180x180">
+    <link rel="icon" href="{{ asset('assets/img/favicons/favicon-32x32.png') }}" sizes="32x32" type="image/png">
+    <link rel="icon" href="{{ asset('assets/img/favicons/favicon-16x16.png') }}" sizes="16x16" type="image/png">
+    <link rel="manifest" href=" {{ url('assets/img/favicons/manifest.json') }} ">
+    <link rel="mask-icon" href="{{ asset('assets/img/favicons/safari-pinned-tab.svg') }} " color="#7952b3">
+    <link rel="icon" href="{{ asset('assets/img/favicons/favicon.ico') }}">
     <meta name="theme-color" content="#7952b3">
 
 
@@ -106,8 +98,8 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <img class="mb-4" src="https://getbootstrap.com/docs/5.1/assets/brand/bootstrap-logo.svg" alt=""
-                width="72" height="57">
+            <img class="mb-4" src="{{ url('assets/img/logo-santa-cruz.png') }}" alt=""
+                width="100" height="100">
             <h1 class="h3 mb-3 fw-normal">Entrar</h1>
 
             <div class="form-floating">
@@ -135,7 +127,7 @@
                     @endif
                 </label>
             </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">{{ __('Entrar') }}</button>
+            <button class="w-100 btn btn-lg btn-success" type="submit">{{ __('Entrar') }}</button>
 
             <p class="mt-5 text-muted">&copy; 2021</p>
             <p class="mb-3 text-muted">Desenvolvido por: Adériton Prado</p>
@@ -143,10 +135,6 @@
     </main>
 
 
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
-    </script>
 </body>
 
 </html>
