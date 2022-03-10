@@ -21,4 +21,5 @@ if (mix.inProduction()) {
     mix.version();
 }
 
-mix.sass('resources/sass/app.scss', 'public/css')
+mix.js('resources/js/bootstrap.js', 'public/js');
+mix.sass('resources/sass/app.scss', 'public/css');
