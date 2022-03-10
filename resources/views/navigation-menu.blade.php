@@ -1,79 +1,66 @@
 <header class="p-3 mb-3 border-bottom noprint">
-    <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-                    <use xlink:href="#bootstrap"></use>
-                </svg>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url('assets/img/logo-santa-cruz.png') }}" alt="" width="50" height="50">
             </a>
-
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li>
-                    <a href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"
-                        class="nav-link px-2 link-secondary">{{ __('Dashboard') }}</a>
-                </li>
-
-                <li>
-                    <a href="{{ route('supplies.index') }}" :active="request()->routeIs('supplies.index')"
-                        class="nav-link px-2 link-dark">{{ __('Posto') }}</a>
-                </li>
-
-                <li>
-                    <a href="{{ route('groups.index') }}" :active="request()->routeIs('groups.index')"
-                        class="nav-link px-2 link-dark">{{ __('Grupos') }}</a>
-                </li>
-
-                <li>
-                    <a href="{{ route('equipaments.index') }}" :active="request()->routeIs('equipaments.index')"
-                        class="nav-link px-2 link-dark">{{ __('Equipamentos') }}</a>
-                </li>
-
-                <li>
-                    <a href="#" :active="request()->routeIs('equipaments.index')"
-                        class="d-block nav-link link-dark text-decoration-none dropdown-toggle px-2" id="dropdownRequisition"
-                        data-bs-toggle="dropdown" aria-expanded="false">{{ __('Movimentação') }}
-                    </a>
-                    <ul class="dropdown-menu text-small" aria-labelledby="dropdownRequisition" style="">
-                        <li>
-                            <a class="dropdown-item" href="{{ route('requisitions.index') }}">
-                                {{ __('Requisições') }}
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">{{ __('Requisições') }}</a></li>
-                    </ul>
-
-                </li>
-
-            </ul>
-
-            <div class="dropdown text-end">
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                </a>
-                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" :active="request()->routeIs('dashboard')" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
                     </li>
-                    <li>
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('supplies.index') }}" :active="request()->routeIs('supplies.index')">{{ __('Posto') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('groups.index') }}" :active="request()->routeIs('groups.index')">{{ __('Grupos') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('equipaments.index') }}" :active="request()->routeIs('equipaments.index')">{{ __('Equipamentos') }}</a>
+                    </li>
 
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ __('Movimentação') }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">{{ __('Requisição') }}</a></li>
+                            <li><a class="dropdown-item" href="#">{{ __('Devolução') }}</a></li>
+                            <li><a class="dropdown-item" href="#">{{ __('Compra') }}</a></li>
+                            <li><a class="dropdown-item" href="#">{{ __('Sucateamento') }}</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ __('Perfil') }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">{{ __('Configurações') }}</a></li>
+                            <li><a class="dropdown-item" href="#">{{ __('Perfil') }}</a></li>
+
+                            <li class="nav-item dropdown">
+                                <!-- Authentication -->
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </a>
-                        </form>
+                                        {{ __('Sair') }}
+                                    </a>
+                                </form>
+                            </li>
+                        </ul>
                     </li>
+
                 </ul>
             </div>
+
         </div>
-    </div>
+    </nav>
+
 </header>
