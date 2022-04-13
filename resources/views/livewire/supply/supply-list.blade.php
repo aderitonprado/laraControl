@@ -56,6 +56,8 @@
                 <th>Data</th>
                 <th>Bomba</th>
                 <th>QTD</th>
+                <th>R$</th>
+                <th>Valor Total</th>
                 <th>Frota</th>
                 <th>Ações</th>
             </tr>
@@ -64,28 +66,29 @@
 
             @foreach ($supplies as $sup)
 
-                <tr>
-                    <td>{{ $sup->id }}</td>
-                    <td>{{ $sup->supply_date->format('d-m-Y') }}</td>
-                    <td>{{ $sup->supply_pump }}</td>
-                    <td>{{ $sup->qtd }}</td>
-                    <td>{{ $sup->vehicles_fleet }}</td>
-                    <td>
-                        <a href="{{ route('supplies.show', $sup->id) }}" class="btn btn-sm btn-info">Ver
-                        </a>
-                        <a href="{{ route('supplies.edit', $sup->id) }}" class="btn btn-sm btn-success">Editar
-                        </a>
-                        <a href="#" wire:click.prevent="remove({{ $sup->id }})"
-                            class="btn btn-sm btn-danger">Remover</a>
+            <tr>
+                <td>{{ $sup->id }}</td>
+                <td>{{ $sup->supply_date->format('d-m-Y') }}</td>
+                <td>{{ $sup->supply_pump }}</td>
+                <td>{{ $sup->qtd }}</td>
+                <td>R$ {{number_format($sup->pump_price, 2, ',', '.')}}</td>
+                <td>R$ {{number_format($sup->pump_total_price, 2, ',', '.')}}</td>
+                <td>{{ $sup->vehicles_fleet }}</td>
+                <td>
+                    <a href="{{ route('supplies.show', $sup->id) }}" class="btn btn-sm btn-info">Ver
+                    </a>
+                    <a href="{{ route('supplies.edit', $sup->id) }}" class="btn btn-sm btn-success">Editar
+                    </a>
+                    <a href="#" wire:click.prevent="remove({{ $sup->id }})" class="btn btn-sm btn-danger">Remover</a>
 
-                        <!-- Button trigger modal
+                    <!-- Button trigger modal
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                     Launch demo modal
                                 </button>
 
                                 -->
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
             @endforeach
 
@@ -98,8 +101,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
