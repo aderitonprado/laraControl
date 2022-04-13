@@ -194,6 +194,16 @@
                     </div>
                 </div>
 
+                <!---- LINHA 7 ---------->
+                <div class="row mb-4">
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <input type="text" name="pump_price" class="form-control" placeholder="R$ 0,00" aria-label="pump_price" 
+                            aria-describedby="pump_price" wire:model="pump_price" disabled>
+                        </div>
+                    </div>
+                </div>
+
                 <button type="submit" class="btn btn-lg btn-pill btn-success">Atualizar</button>
                 <a href="{{ route('supplies.edit', $supply_id) }}" class="btn btn-lg btn-warning">Editar</a>
             </form>
