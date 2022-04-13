@@ -29,12 +29,26 @@ class Supply extends Model
         'end_time',
         'hour_meter',
         'userid_update',
+        'pump_price',
+        'pump_total_price',
     ];
 
     protected $dates = ['supply_date'];
 
-    // MUTATOR
-    public function setExpenseDateAttribute($prop)
+    // ACESSOR PUMP PRICE
+    public function getPumpPriceAttribute()
+    {
+        return $this->attributes['pump_price'] / 100;
+    }
+
+    // ACESSOR PUMP TOTAL PRICE
+    public function getPumpTotalPriceAttribute()
+    {
+        return $this->attributes['pump_total_price'] / 100;
+    }
+
+    // MUTATOR SUPPLY DATE
+    public function setTesteDateAttribute($prop)
     {
         return $this->attributes['supply_date'] = (\DateTime::createFromFormat('d/m/Y H:i:s', $prop))->format('Y-m-d H:i:s');
     }
