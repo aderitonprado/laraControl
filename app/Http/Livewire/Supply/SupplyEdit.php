@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Supply;
 use App\Models\Supply;
 use Livewire\Component;
 use App\Helpers\CalculaQtd;
+use App\Helpers\CalculaPrecoTotal;
 
 class SupplyEdit extends Component
 {
@@ -26,6 +27,8 @@ class SupplyEdit extends Component
     public $start_time;
     public $end_time;
     public $hour_meter;
+    public $pump_price;
+    public $pump_total_price;
 
     // Linhas que contém os campos que serão validados
     protected $rules = [
@@ -44,6 +47,7 @@ class SupplyEdit extends Component
         'supply.start_time'         => 'required',
         'supply.end_time'           => 'required',
         'supply.hour_meter'         => 'required|integer|min:1',
+        'supply.pump_price'         => 'required|min:1',
 
     ];
 
@@ -66,6 +70,7 @@ class SupplyEdit extends Component
         $this->start_time       = $this->supply->start_time;
         $this->end_time         = $this->supply->end_time;
         $this->hour_meter       = $this->supply->hour_meter;
+        $this->pump_price       = number_format($this->supply->pump_price, 2, ',', '.');
 
     }
 
@@ -84,6 +89,10 @@ class SupplyEdit extends Component
 
         } else {
 
+            $this->pump_price = (int)filter_var($this->pump_price, FILTER_SANITIZE_NUMBER_INT);
+
+            $this->pump_total_price = CalculaPrecoTotal::CalcularTotal($this->qtd, $this->pump_price);
+
             $this->supply->update([
                 'supply_pump'      => $this->supply_pump,
                 'supply_date'      => $this->supply_date,
@@ -101,6 +110,8 @@ class SupplyEdit extends Component
                 'start_time'       => $this->start_time,
                 'end_time'         => $this->end_time,
                 'hour_meter'       => $this->hour_meter,
+                'pump_price'       => $this->pump_price,
+                'pump_total_price' => $this->pump_total_price,
                 'userid_update'    => auth()->user()->id,
 
             ]);
