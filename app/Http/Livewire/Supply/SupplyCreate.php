@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Supply;
 
 use Livewire\Component;
 use App\Helpers\CalculaQtd;
+use App\Helpers\CalculaPrecoTotal;
 
 class SupplyCreate extends Component
 {
@@ -26,6 +27,7 @@ class SupplyCreate extends Component
         'supply.start_time'         => 'required',
         'supply.end_time'           => 'required',
         'supply.hour_meter'         => 'required|integer|min:1',
+        'supply.pump_price'         => 'required|string|min:1',
 
     ];
 
@@ -37,16 +39,23 @@ class SupplyCreate extends Component
         // calculo que resulta na quantidade do abastecimento
         $this->supply['qtd'] = CalculaQtd::Calcular(intval($this->supply['pump_start']), intval($this->supply['pump_end']));
 
+        // transforma o pump_price em inteiro. sem arredondar nenhuma casa
+        $this->supply['pump_price'] = (int)filter_var($this->supply['pump_price'], FILTER_SANITIZE_NUMBER_INT);
+
         // se o valor da quantidade for maior que zero, o abastecimento é gravado
         if (intval($this->supply['qtd']) <= 0) {
 
             session()->flash('message', 'Quantidade não pode ser zero!');
             
-        }else {
+        } else {
+
+            $this->supply['pump_total_price'] = CalculaPrecoTotal::CalcularTotal($this->supply['qtd'], $this->supply['pump_price']);
+
             auth()->user()->supplies()->create($this->supply);
             session()->flash('message', 'Abastecimento criado com sucesso!');
-        }
 
+            return redirect('/supplies');
+        }
     }
 
     public function render()
