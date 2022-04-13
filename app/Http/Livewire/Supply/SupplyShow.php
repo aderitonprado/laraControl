@@ -26,6 +26,7 @@ class SupplyShow extends Component
     public $start_time;
     public $end_time;
     public $hour_meter;
+    public $pump_price;
 
     public $supply_id;
 
@@ -50,6 +51,7 @@ class SupplyShow extends Component
         $this->start_time       = $this->supply->start_time;
         $this->end_time         = $this->supply->end_time;
         $this->hour_meter       = $this->supply->hour_meter;
+        $this->pump_price       = number_format($this->supply->pump_price, 2, ',', '.');
 
     }
 
