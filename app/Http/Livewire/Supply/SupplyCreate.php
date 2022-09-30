@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Supply;
 use Livewire\Component;
 use App\Helpers\CalculaQtd;
 use App\Helpers\CalculaPrecoTotal;
+use App\Models\ThirdParty;
 
 class SupplyCreate extends Component
 {
@@ -15,12 +16,13 @@ class SupplyCreate extends Component
         'supply.supply_pump'        => 'required|integer|min:1',
         'supply.supply_date'        => 'required',
         'supply.warehouse'          => 'required|integer|min:1',
-        //'supply.people_code'        => 'required|integer',
+        'supply.third_party_code'   => 'required|integer',
         //'supply.vehicles_code'      => 'required|integer',
         'supply.vehicles_fleet'     => 'required|integer',
         'supply.client_type'        => 'required',
         'supply.vehicles_last_km'   => 'required|integer',
         'supply.vehicles_plate'     => 'required|min:4',
+        'supply.supply_driver'      => 'required|min:4',
         //'supply.qtd'                => 'required|integer|min:1',
         'supply.pump_start'         => 'required',
         'supply.pump_end'           => 'required',
@@ -51,6 +53,9 @@ class SupplyCreate extends Component
 
             $this->supply['pump_total_price'] = CalculaPrecoTotal::CalcularTotal($this->supply['qtd'], $this->supply['pump_price']);
 
+            $id_terceiro = ThirdParty::where('third_party_code', $this->supply['third_party_code'])->get();
+            $this->supply['third_party_id'] = $id_terceiro->first()->id;
+
             auth()->user()->supplies()->create($this->supply);
             session()->flash('message', 'Abastecimento criado com sucesso!');
 
@@ -60,6 +65,8 @@ class SupplyCreate extends Component
 
     public function render()
     {
-        return view('livewire.supply.supply-create');
+        $thirdparties = ThirdParty::all();
+
+        return view('livewire.supply.supply-create', compact('thirdparties'));
     }
 }
