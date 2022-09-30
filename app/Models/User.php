@@ -73,4 +73,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Equipament::class);
     }
+    
+    public function thirdparties()
+    {
+        return $this->hasMany(ThirdParty::class);
+    }
 }

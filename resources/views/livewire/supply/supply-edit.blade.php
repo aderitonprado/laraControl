@@ -55,7 +55,12 @@
                 <div class="row mb-3">
                     <div class="col-sm-4">
                         <div class="input-group">
-                            <input type="text" name="people_code" class="form-control @error('people_code') border border-danger @enderror" placeholder="Matricula da Pessoa" aria-label="people_code" aria-describedby="people_code" wire:model="people_code">
+                            <input type="search" name="third_party_code" list="thirdparties" class="form-control @error('third_party_code') border border-danger @enderror" placeholder="Código do Terceiro" aria-label="third_party_code" aria-describedby="third_party_code" wire:model="third_party_code">
+                            <datalist id="thirdparties">
+                                @foreach($thirdparties as $tp)
+                                    <option value="{{$tp->third_party_code}}">{{$tp->description}}
+                                @endforeach
+                            </datalist>
                         </div>
 
                         @error('people_code')
@@ -211,14 +216,13 @@
                         </div>
 
                         @error('supply.pump_price')
-                        <p class="text-danger"><small>{{ $message }}</small></p>
+                            <p class="text-danger"><small>{{ $message }}</small></p>
                         @enderror
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-pill btn-success">
-                    Atualizar
-                </button>
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <a href="{{route('supplies.index')}}" class="btn btn-light">Voltar</a>
             </form>
 
         </div>

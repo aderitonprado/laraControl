@@ -3,7 +3,7 @@
         <h1>Meus Abastecimentos</h1>
 
         <div class="mt-3 mb-3 ml-auto noprint">
-            <a href="{{ route('supplies.create') }}" class="btn btn-sm btn-success">Criar Registro</a>
+            <a href="{{ route('supplies.create') }}" class="btn btn-sm btn-success">Novo</a>
             <a href="{{ route('supplies.reports') }}" class="btn btn-sm btn-info">Relatorios</a>
         </div>
     </x-slot>
@@ -27,8 +27,8 @@
                 <span>Tipo</span>
                 <select name="type" id="" wire:model="type" class="form-control">
                     <option value="">Selecione</option>
-                    <option value="1">Bomba 1</option>
-                    <option value="2">Bomba 2</option>
+                    <option value="1">Proprio</option>
+                    <option value="2">Terceiro</option>
                 </select>
             </div>
         </div>
@@ -55,10 +55,11 @@
                 <th>#</th>
                 <th>Data</th>
                 <th>Bomba</th>
+                <th>Terceiro</th>
+                <th>Frota</th>
                 <th>QTD</th>
                 <th>R$</th>
                 <th>Valor Total</th>
-                <th>Frota</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -69,15 +70,16 @@
             <tr>
                 <td>{{ $sup->id }}</td>
                 <td>{{ $sup->supply_date->format('d-m-Y') }}</td>
-                <td>{{ $sup->supply_pump }}</td>
+                <td>{{ $sup->supply_pump }}</td> 
+                <td>{{ $sup->description }}</td> 
+                <td>{{ $sup->vehicles_fleet }}</td>
                 <td>{{ $sup->qtd }}</td>
                 <td>R$ {{number_format($sup->pump_price, 2, ',', '.')}}</td>
                 <td>R$ {{number_format($sup->pump_total_price, 2, ',', '.')}}</td>
-                <td>{{ $sup->vehicles_fleet }}</td>
                 <td>
-                    <a href="{{ route('supplies.show', $sup->id) }}" class="btn btn-sm btn-info">Ver
+                    <a href="{{ route('supplies.show', $sup->id) }}" class="btn btn-sm btn-light">Ver
                     </a>
-                    <a href="{{ route('supplies.edit', $sup->id) }}" class="btn btn-sm btn-success">Editar
+                    <a href="{{ route('supplies.edit', $sup->id) }}" class="btn btn-sm btn-primary">Editar
                     </a>
                     <a href="#" wire:click.prevent="remove({{ $sup->id }})" class="btn btn-sm btn-danger">Remover</a>
 

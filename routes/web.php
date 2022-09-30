@@ -24,6 +24,12 @@ use App\Http\Livewire\Requisition\RequisitionList;
 use App\Http\Livewire\Requisition\RequisitionEdit;
 use App\Http\Livewire\Requisition\RequisitionShow;
 
+/** Compomente ThirdyParts */
+use App\Http\Livewire\ThirdParty\ThirdPartyCreate;
+use App\Http\Livewire\ThirdParty\ThirdPartyList;
+use App\Http\Livewire\ThirdParty\ThirdPartyEdit;
+use App\Http\Livewire\ThirdParty\ThirdPartyShow; 
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -45,6 +51,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/edit/{supply}', SupplyEdit::class)->name('edit');
 
         Route::get('/reports', SupplyReports::class)->name('reports');
+
+    });
+
+    Route::prefix('thirdparties')->name('thirdparties.')->group(function () {
+
+        Route::get('/', ThirdPartyList::class)->name('index');
+        Route::get('/show/{thirdparty}', ThirdPartyShow::class)->name('show');
+        Route::get('/create', ThirdPartyCreate::class)->name('create');
+        Route::get('/edit/{thirdparty}', ThirdPartyEdit::class)->name('edit');
 
     });
 

@@ -55,7 +55,12 @@
                 <div class="row mb-3">
                     <div class="col-sm-4">
                         <div class="input-group">
-                            <input type="text" name="people_code" class="form-control @error('supply.people_code') border border-danger @enderror" placeholder="Matricula da Pessoa" aria-label="people_code" aria-describedby="people_code" wire:model="supply.people_code">
+                            <input type="search" name="third_party_code" list="thirdparties" class="form-control @error('supply.third_party_code') border border-danger @enderror" placeholder="Pesquise o Terceiro" aria-label="third_party_code" aria-describedby="third_party_code" wire:model="supply.third_party_code">
+                            <datalist id="thirdparties">
+                                @foreach($thirdparties as $tp)
+                                    <option value="{{$tp->third_party_code}}">{{$tp->description}}
+                                @endforeach
+                            </datalist>
                         </div>
 
                         @error('supply.people_code')
@@ -79,10 +84,10 @@
 
                     <div class="col-sm-4">
                         <div class="input-group">
-                            <input type="text" name="vehicles_code" class="form-control" placeholder="Código Veiculo" aria-label="vehicles_code" aria-describedby="vehicles_code" wire:model="supply.vehicles_code">
+                            <input type="text" name="supply_driver" class="form-control" placeholder="Nome do Motorista" aria-label="supply_driver" aria-describedby="supply_driver" wire:model="supply.supply_driver">
                         </div>
 
-                        @error('supply.vehicles_code')
+                        @error('supply.supply_driver')
                         <p class="text-danger"><small>{{ $message }}</small></p>
                         @enderror
                     </div>
@@ -216,9 +221,8 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-pill btn-success">
-                    Criar Abastecimento
-                </button>
+                <button type="submit" class="btn btn-pill btn-success">Salvar</button>
+                <a href="{{route('supplies.index')}}" class="btn btn-light">Voltar</a>
             </form>
 
         </div>

@@ -19,14 +19,14 @@ class SupplyList extends Component
 
     public function render()
     {
-        $supplies = Supply::orderBy('id', 'DESC');
+        $supplies = Supply::join('third_parties', 'supplies.third_party_id', '=', 'third_parties.id');
 
         $supplies->when($this->search, function($queryBuilder){
             return $queryBuilder->where('supply_pump', 'LIKE', '%' . $this->search . '%');
         });
 
         $supplies->when($this->type, function($queryBuilder){
-            return $queryBuilder->where('supply_pump', $this->type);
+            return $queryBuilder->where('client_type', $this->type);
         });
 
         $supplies->when($this->start_date, function($queryBuilder){

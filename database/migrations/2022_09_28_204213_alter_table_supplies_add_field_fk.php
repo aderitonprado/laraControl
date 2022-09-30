@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterSuppliesTable extends Migration
+class AlterTableSuppliesAddFieldFk extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class AlterSuppliesTable extends Migration
     public function up()
     {
         Schema::table('supplies', function (Blueprint $table) {
-            //
+            // adicionando campo de chave estrangeira
+            $table->foreignId("third_party_id")->constrained('third_parties')->cascadeOnDelete();
         });
     }
 
@@ -26,7 +27,8 @@ class AlterSuppliesTable extends Migration
     public function down()
     {
         Schema::table('supplies', function (Blueprint $table) {
-            //
+            // removendo coluna
+            $table->dropColumn('third_party_id');
         });
     }
 }

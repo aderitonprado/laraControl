@@ -105,9 +105,8 @@
 
                 </div>
 
-                <button type="submit" class="btn btn-pill btn-success">
-                    Criar Equipamento
-                </button>
+                <a href="{{route('equipaments.create')}}" class="btn btn-success">Salvar</a>
+                <a href="{{route('equipaments.index')}}" class="btn btn-light">Voltar</a>
             </form>
 
         </div>

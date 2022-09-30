@@ -21,8 +21,8 @@ class CreateSuppliesTable extends Migration
             $table->integer('supply_pump');
             $table->date('supply_date');
             $table->integer('warehouse');
-            $table->bigInteger("people_code")->nullable();
-            $table->bigInteger("vehicles_code")->nullable();
+            $table->bigInteger("third_party_code");
+            $table->string("supply_driver", 50);
             $table->bigInteger('vehicles_fleet');
             $table->integer('client_type');
             $table->string('vehicles_last_km');
@@ -31,6 +31,8 @@ class CreateSuppliesTable extends Migration
             $table->integer('qtd');
             $table->bigInteger('pump_start');
             $table->bigInteger('pump_end');
+            $table->integer('pump_price');
+            $table->integer('pump_total_price');
             $table->time('start_time');
             $table->time('end_time');
             $table->bigInteger('hour_meter');

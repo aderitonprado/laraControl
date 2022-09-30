@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Supply;
 
 use App\Models\Supply;
+use App\Models\ThirdParty;
 use Livewire\Component;
 use App\Helpers\CalculaQtd;
 use App\Helpers\CalculaPrecoTotal;
@@ -10,11 +11,12 @@ use App\Helpers\CalculaPrecoTotal;
 class SupplyEdit extends Component
 {
     public Supply $supply;
+    public $thirdparties;
 
     public $supply_pump;
     public $supply_date;
     public $warehouse;
-    public $people_code;
+    public $third_party_code;
     public $vehicles_code;
     public $vehicles_fleet;
     public $client_type;
@@ -35,7 +37,7 @@ class SupplyEdit extends Component
         'supply_pump'        => 'required|integer|min:1',
         'supply_date'        => 'required',
         'warehouse'          => 'required|integer|min:1',
-        //'supply.people_code'        => 'required|integer',
+        'supply.third_party_code'        => 'required|integer',
         //'supply.vehicles_code'      => 'required|integer',
         'supply.vehicles_fleet'     => 'required|integer',
         'supply.client_type'        => 'required',
@@ -53,11 +55,12 @@ class SupplyEdit extends Component
 
     public function mount()
     {
+        $this->thirdparties = ThirdParty::all();
 
         $this->supply_pump      = $this->supply->supply_pump;
         $this->supply_date      = $this->supply->supply_date->format('Y-m-d');
         $this->warehouse        = $this->supply->warehouse;
-        $this->people_code      = $this->supply->people_code;
+        $this->third_party_code = $this->supply->third_party_code;
         $this->vehicles_code    = $this->supply->vehicles_code;
         $this->vehicles_fleet   = $this->supply->vehicles_fleet;
         $this->client_type      = $this->supply->client_type;
@@ -97,7 +100,7 @@ class SupplyEdit extends Component
                 'supply_pump'      => $this->supply_pump,
                 'supply_date'      => $this->supply_date,
                 'warehouse'        => $this->warehouse,
-                'people_code'      => $this->people_code,
+                'third_party_code' => $this->third_party_code,
                 'vehicles_code'    => $this->vehicles_code,
                 'vehicles_fleet'   => $this->vehicles_fleet,
                 'client_type'      => $this->client_type,

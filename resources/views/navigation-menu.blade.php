@@ -13,9 +13,17 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" :active="request()->routeIs('dashboard')" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('supplies.index') }}" :active="request()->routeIs('supplies.index')">{{ __('Posto') }}</a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ __('Posto') }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a :active="request()->routeIs('dashboard')" class="dropdown-item" href="{{ route('supplies.index') }}">{{ __('Posto') }}</a></li>
+                            <li><a :active="request()->routeIs('thirdparties')" class="dropdown-item" href="{{ route('thirdparties.index') }}">{{ __('Terceiros') }}</a></li>
+                        </ul>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('groups.index') }}" :active="request()->routeIs('groups.index')">{{ __('Grupos') }}</a>
                     </li>
