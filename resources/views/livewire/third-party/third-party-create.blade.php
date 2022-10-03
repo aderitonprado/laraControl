@@ -87,7 +87,7 @@
 
                 </div>
 
-                <a href="{{route('thirdparties.create')}}" class="btn btn-success">Salvar</a>
+                <button type="submit" class="btn btn-success">Salvar</button>
                 <a href="{{route('thirdparties.index')}}" class="btn btn-light">Voltar</a>
             </form>
 
