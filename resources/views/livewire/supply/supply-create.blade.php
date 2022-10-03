@@ -221,7 +221,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-pill btn-success">Salvar</button>
+                <button type="submit" class="btn btn-success">Salvar</button>
                 <a href="{{route('supplies.index')}}" class="btn btn-light">Voltar</a>
             </form>
 
