@@ -140,9 +140,7 @@
                 <button type="submit" class="btn btn-success">
                     Salvar
                 </button>
-                <button type="submit" class="btn btn-danger">
-                    Cancelar
-                </button>
+                <a href="{{route('requisitions.index')}}" class="btn btn-light">Voltar</a>
             </form>
 
         </div>
