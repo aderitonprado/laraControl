@@ -19,7 +19,7 @@ class SupplyList extends Component
 
     public function render()
     {
-        $supplies = Supply::join('third_parties', 'supplies.third_party_id', '=', 'third_parties.id');
+        $supplies = Supply::join('third_parties', 'supplies.third_party_id', '=', 'third_parties.id')->orderBy('supplies.id', 'desc');
 
         $supplies->when($this->search, function($queryBuilder){
             return $queryBuilder->where('supply_pump', 'LIKE', '%' . $this->search . '%');
@@ -38,6 +38,8 @@ class SupplyList extends Component
         });
 
         $supplies = $this->take ? $supplies->paginate($this->take) : $supplies->get();
+
+        //dd($supplies);
 
         $supplies = $supplies->count() ? $supplies : [];
 
