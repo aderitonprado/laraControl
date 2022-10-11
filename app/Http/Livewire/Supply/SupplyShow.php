@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Supply;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Supply;
-
 use Livewire\Component;
 
 class SupplyShow extends Component
@@ -13,8 +13,9 @@ class SupplyShow extends Component
     public $supply_pump;
     public $supply_date;
     public $warehouse;
-    public $people_code;
-    public $vehicles_code;
+    public $third_party_code;
+    public $third_party_name;
+    public $supply_driver;
     public $vehicles_fleet;
     public $client_type;
     public $vehicles_last_km;
@@ -25,7 +26,6 @@ class SupplyShow extends Component
     public $pump_end;
     public $start_time;
     public $end_time;
-    public $hour_meter;
     public $pump_price;
 
     public $supply_id;
@@ -34,14 +34,15 @@ class SupplyShow extends Component
     {
 
         $this->supply_id = $this->supply->id;
+        $this->third_party_name = $this->supply->getSuppliesWithThird($this->supply->id)->first();
 
         $this->supply_pump      = $this->supply->supply_pump;
         $this->supply_date      = $this->supply->supply_date->format('Y-m-d');
         $this->warehouse        = $this->supply->warehouse;
-        $this->people_code      = $this->supply->people_code;
-        $this->vehicles_code    = $this->supply->vehicles_code;
+        $this->third_party_name = $this->third_party_name->description;
         $this->vehicles_fleet   = $this->supply->vehicles_fleet;
         $this->client_type      = $this->supply->client_type;
+        $this->supply_driver    = $this->supply->supply_driver;
         $this->vehicles_last_km = $this->supply->vehicles_last_km;
         $this->vehicles_plate   = $this->supply->vehicles_plate;
         $this->obs              = $this->supply->obs;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Supply;
 
+use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 use App\Models\Supply;
 use Livewire\Component;
@@ -10,6 +11,7 @@ use Livewire\Component;
 class SupplyList extends Component
 {
     use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public $search = null;
     public $type = null;
@@ -19,7 +21,9 @@ class SupplyList extends Component
 
     public function render()
     {
-        $supplies = Supply::join('third_parties', 'supplies.third_party_id', '=', 'third_parties.id')->orderBy('supplies.id', 'desc');
+        $supplies = Supply::join('third_parties', 'supplies.third_party_id', '=', 'third_parties.id')
+                    ->select('supplies.*', 'third_parties.description', 'third_parties.description_aux')
+                    ->orderBy('supplies.id', 'DESC');
 
         $supplies->when($this->search, function($queryBuilder){
             return $queryBuilder->where('supply_pump', 'LIKE', '%' . $this->search . '%');

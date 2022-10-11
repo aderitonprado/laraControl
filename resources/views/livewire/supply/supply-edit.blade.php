@@ -15,26 +15,10 @@
                             <select name="supply_pump" class="form-control @error('supply_pump') border border-danger @enderror" aria-label="supply_pump" aria-describedby="supply_pump" wire:model="supply_pump">
                                 <option value="">Selecione a Bomba</option>
                                 <option value="1">1 - Alcool Hidratado</option>
-                                <option value="2">Bomba 2</option>
-                                <option value="3">Bomba 3</option>
                             </select>
                         </div>
 
                         @error('supply_pump')
-                        <p class="text-danger"><small>{{ $message }}</small></p>
-                        @enderror
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <select name="warehouse" class="form-control @error('warehouse') border border-danger @enderror" aria-label="warehouse" aria-describedby="warehouse" wire:model="warehouse">
-                                <option value="">Selecione o Almox</option>
-                                <option value="1">Almox 1</option>
-                                <option value="2">Almox 2</option>
-                                <option value="3">Almox 3</option>
-                            </select>
-                        </div>
-                        @error('warehouse')
                         <p class="text-danger"><small>{{ $message }}</small></p>
                         @enderror
                     </div>
@@ -48,11 +32,7 @@
                         <p class="text-danger"><small>{{ $message }}</small></p>
                         @enderror
                     </div>
-                </div>
 
-                <!-- LINHA 2 -->
-
-                <div class="row mb-3">
                     <div class="col-sm-4">
                         <div class="input-group">
                             <input type="search" name="third_party_code" list="thirdparties" class="form-control @error('third_party_code') border border-danger @enderror" placeholder="Código do Terceiro" aria-label="third_party_code" aria-describedby="third_party_code" wire:model="third_party_code">
@@ -63,11 +43,16 @@
                             </datalist>
                         </div>
 
-                        @error('people_code')
+                        @error('third_party_code')
                         <p class="text-danger"><small>{{ $message }}</small></p>
                         @enderror
                     </div>
+                </div>
 
+                <!-- LINHA 2 -->
+
+                <div class="row mb-3">
+                    
                     <div class="col-sm-4">
                         <div class="input-group">
                             <select name="client_type" class="form-control @error('client_type') border border-danger @enderror" aria-label="client_type" aria-describedby="client_type" wire:model="client_type">
@@ -84,20 +69,6 @@
 
                     <div class="col-sm-4">
                         <div class="input-group">
-                            <input type="text" name="vehicles_code" class="form-control" placeholder="Código Veiculo" aria-label="vehicles_code" aria-describedby="vehicles_code" wire:model="vehicles_code">
-                        </div>
-
-                        @error('vehicles_code')
-                        <p class="text-danger"><small>{{ $message }}</small></p>
-                        @enderror
-                    </div>
-                </div>
-
-                <!--- LINHA 3 ---->
-
-                <div class="row mb-3">
-                    <div class="col-sm-4">
-                        <div class="input-group">
                             <input type="text" name="vehicles_fleet" class="form-control @error('vehicles_fleet') border border-danger @enderror" placeholder="Frota" aria-label="vehicles_fleet" aria-describedby="vehicles_fleet" wire:model="vehicles_fleet">
                         </div>
 
@@ -105,6 +76,24 @@
                         <p class="text-danger"><small>{{ $message }}</small></p>
                         @enderror
                     </div>
+
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <input type="text" name="supply_driver" class="form-control @error('supply_driver') border border-danger @enderror" placeholder="Nome do Motorista" aria-label="supply_driver" aria-describedby="vehicles_driver" wire:model="supply_driver">
+                        </div>
+
+                        @error('supply_driver')
+                        <p class="text-danger"><small>{{ $message }}</small></p>
+                        @enderror
+                    </div>
+
+                    
+                </div>
+
+                <!--- LINHA 3 ---->
+
+                <div class="row mb-3">
+                    
 
                     <div class="col-sm-4">
                         <div class="input-group">
@@ -143,7 +132,7 @@
 
                 <!--- LINHA 5 --------------->
                 <div class="row mb-3">
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         <div class="form-group">
                             <label for="end_time">Hora Inicial abast</label>
                             <input type="time" name="start_time" class="form-control @error('start_time') border border-danger @enderror" placeholder="Hora Inicial" aria-label="start_time" aria-describedby="start_time" wire:model="start_time">
@@ -154,7 +143,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         <div class="form-group">
                             <label for="end_time">Hora Final abast</label>
                             <input type="time" name="end_time" class="form-control @error('end_time') border border-danger @enderror" placeholder="Hora Final" aria-label="end_time" aria-describedby="end_time" wire:model="end_time">
@@ -166,23 +155,10 @@
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="form-group">
-                            <label for="hour_meter">Horímetro</label>
-                            <input type="number" name="hour_meter" class="form-control @error('hour_meter') border border-danger @enderror" placeholder="Horimetro" aria-label="hour_meter" aria-describedby="hour_meter" wire:model="hour_meter">
-                        </div>
-
-                        @error('hour_meter')
-                        <p class="text-danger"><small>{{ $message }}</small></p>
-                        @enderror
-                    </div>
-                </div>
-
-                <!---- LINHA 6 ---------->
-                <div class="row mb-4">
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <input type="number" name="pump_start" class="form-control @error('pump_start') border border-danger @enderror" placeholder="Ínicio da bomba" aria-label="pump_start" aria-describedby="pump_start" wire:model="pump_start">
+                        <label for="end_time">Inicio da bomba</label>
+                            <input type="number" name="pump_start" class="form-control @error('pump_start') border border-danger @enderror" placeholder="Ínicio da bomba" aria-label="pump_start" aria-describedby="pump_start" wire:model="pump_start" onchange="calculaQtd()">
                         </div>
 
                         @error('pump_start')
@@ -190,8 +166,9 @@
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
-                        <div class="input-group">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                        <label for="end_time">Final da Bomba</label>
                             <input type="number" name="pump_end" class="form-control @error('pump_end') border border-danger @enderror" placeholder="Fim da bomba" aria-label="pump_end" aria-describedby="pump_end" wire:model="pump_end" onchange="calculaQtd()">
                         </div>
 
@@ -200,25 +177,34 @@
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
-                        <div class="input-group">
+                    
+                </div>
+
+                <!---- LINHA 6 ---------->
+                <div class="row mb-4">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                        <label for="end_time">Quantidade</label>
                             <input id="qtd" type="text" name="qtd" class="form-control" placeholder="Quantidade" aria-label="qtd" aria-describedby="qtd" wire:model="qtd" disabled>
                         </div>
 
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                        <label for="end_time">Preço da Bomba</label>
+                            <input type="text" name="pump_price" disabled class="form-control @error('pump_price') border border-danger @enderror" placeholder="R$ 0,00" aria-label="pump_price" aria-describedby="pump_price" wire:model="pump_price">
+                        </div>
+
+                        @error('pump_price')
+                            <p class="text-danger"><small>{{ $message }}</small></p>
+                        @enderror
                     </div>
                 </div>
 
                 <!---- LINHA 7 ---------->
                 <div class="row mb-4">
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <input type="text" name="pump_price" class="form-control @error('pump_price') border border-danger @enderror" placeholder="R$ 0,00" aria-label="pump_price" aria-describedby="pump_price" wire:model="pump_price">
-                        </div>
-
-                        @error('supply.pump_price')
-                            <p class="text-danger"><small>{{ $message }}</small></p>
-                        @enderror
-                    </div>
+                    
                 </div>
 
                 <button type="submit" class="btn btn-success">Salvar</button>

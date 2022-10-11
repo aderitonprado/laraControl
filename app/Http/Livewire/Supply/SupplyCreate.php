@@ -9,27 +9,26 @@ use App\Models\ThirdParty;
 
 class SupplyCreate extends Component
 {
-    public $supply = [];
+    public $supply = ['pump_price' => '3.5', 'warehouse' => 1, 'hour_meter' => 1, 'supply_pump' => 1];
 
     // Linhas que contém os campos que serão validados
     protected $rules = [
-        'supply.supply_pump'        => 'required|integer|min:1',
+        //'supply.supply_pump'        => 'required|integer|min:1',
+        //'supply.warehouse'          => 'required|integer|min:1',
+        //'supply.hour_meter'         => 'required|integer',
+        //'supply.pump_price'         => 'required|integer',
+        //'supply.qtd'                => 'required|integer|min:1',
         'supply.supply_date'        => 'required',
-        'supply.warehouse'          => 'required|integer|min:1',
         'supply.third_party_code'   => 'required|integer',
-        //'supply.vehicles_code'      => 'required|integer',
         'supply.vehicles_fleet'     => 'required|integer',
         'supply.client_type'        => 'required',
         'supply.vehicles_last_km'   => 'required|integer',
         'supply.vehicles_plate'     => 'required|min:4',
         'supply.supply_driver'      => 'required|min:4',
-        //'supply.qtd'                => 'required|integer|min:1',
         'supply.pump_start'         => 'required',
         'supply.pump_end'           => 'required',
         'supply.start_time'         => 'required',
         'supply.end_time'           => 'required',
-        'supply.hour_meter'         => 'required|integer|min:1',
-        'supply.pump_price'         => 'required|string|min:1',
 
     ];
 
@@ -42,7 +41,9 @@ class SupplyCreate extends Component
         $this->supply['qtd'] = CalculaQtd::Calcular(intval($this->supply['pump_start']), intval($this->supply['pump_end']));
 
         // transforma o pump_price em inteiro. sem arredondar nenhuma casa
-        $this->supply['pump_price'] = (int)filter_var($this->supply['pump_price'], FILTER_SANITIZE_NUMBER_INT);
+        //$this->supply['pump_price'] = (int)filter_var($this->supply['pump_price'], FILTER_SANITIZE_NUMBER_INT);
+
+        //dd($this->supply);
 
         // se o valor da quantidade for maior que zero, o abastecimento é gravado
         if (intval($this->supply['qtd']) <= 0) {
@@ -55,6 +56,8 @@ class SupplyCreate extends Component
 
             $id_terceiro = ThirdParty::where('third_party_code', $this->supply['third_party_code'])->get();
             $this->supply['third_party_id'] = $id_terceiro->first()->id;
+
+            //dd($this->supply);
 
             auth()->user()->supplies()->create($this->supply);
             session()->flash('message', 'Abastecimento criado com sucesso!');

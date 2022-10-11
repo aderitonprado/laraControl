@@ -13,11 +13,11 @@ class SupplyEdit extends Component
     public Supply $supply;
     public $thirdparties;
 
-    public $supply_pump;
+    public $supply_pump = 1;
     public $supply_date;
-    public $warehouse;
+    public $warehouse = 1;
     public $third_party_code;
-    public $vehicles_code;
+    public $supply_driver;
     public $vehicles_fleet;
     public $client_type;
     public $vehicles_last_km;
@@ -28,28 +28,27 @@ class SupplyEdit extends Component
     public $pump_end;
     public $start_time;
     public $end_time;
-    public $hour_meter;
     public $pump_price;
     public $pump_total_price;
 
     // Linhas que contém os campos que serão validados
     protected $rules = [
-        'supply_pump'        => 'required|integer|min:1',
-        'supply_date'        => 'required',
-        'warehouse'          => 'required|integer|min:1',
-        'supply.third_party_code'        => 'required|integer',
-        //'supply.vehicles_code'      => 'required|integer',
+        //'supply.supply_pump'        => 'required|integer|min:1',
+        //'supply.warehouse'          => 'required|integer|min:1',
+        //'supply.hour_meter'      => 'required|integer',
+        'supply.qtd'                => 'required|integer|min:1',
+        //'supply.pump_price'         => 'required|integer',
+        'supply.supply_date'        => 'required',
+        'supply.third_party_code'   => 'required|integer',
         'supply.vehicles_fleet'     => 'required|integer',
         'supply.client_type'        => 'required',
         'supply.vehicles_last_km'   => 'required|integer',
         'supply.vehicles_plate'     => 'required|min:4',
-        //'supply.qtd'                => 'required|integer|min:1',
+        'supply.supply_driver'      => 'required|min:4',
         'supply.pump_start'         => 'required',
         'supply.pump_end'           => 'required',
         'supply.start_time'         => 'required',
         'supply.end_time'           => 'required',
-        'supply.hour_meter'         => 'required|integer|min:1',
-        'supply.pump_price'         => 'required|min:1',
 
     ];
 
@@ -57,11 +56,13 @@ class SupplyEdit extends Component
     {
         $this->thirdparties = ThirdParty::all();
 
+        //dd($this->supply->pump_price);
+
         $this->supply_pump      = $this->supply->supply_pump;
         $this->supply_date      = $this->supply->supply_date->format('Y-m-d');
         $this->warehouse        = $this->supply->warehouse;
         $this->third_party_code = $this->supply->third_party_code;
-        $this->vehicles_code    = $this->supply->vehicles_code;
+        $this->supply_driver    = $this->supply->supply_driver;
         $this->vehicles_fleet   = $this->supply->vehicles_fleet;
         $this->client_type      = $this->supply->client_type;
         $this->vehicles_last_km = $this->supply->vehicles_last_km;
@@ -72,7 +73,6 @@ class SupplyEdit extends Component
         $this->pump_end         = $this->supply->pump_end;
         $this->start_time       = $this->supply->start_time;
         $this->end_time         = $this->supply->end_time;
-        $this->hour_meter       = $this->supply->hour_meter;
         $this->pump_price       = number_format($this->supply->pump_price, 2, ',', '.');
 
     }
@@ -80,7 +80,7 @@ class SupplyEdit extends Component
     public function updateSupply()
     {
 
-        $this->validate();
+        //$this->validate();
 
         // calculo que resulta na quantidade do abastecimento
         $this->qtd = CalculaQtd::Calcular(intval($this->pump_start), intval($this->pump_end));
@@ -92,16 +92,18 @@ class SupplyEdit extends Component
 
         } else {
 
-            $this->pump_price = (int)filter_var($this->pump_price, FILTER_SANITIZE_NUMBER_INT);
+            $this->pump_price = filter_var($this->pump_price, FILTER_SANITIZE_NUMBER_FLOAT);
 
             $this->pump_total_price = CalculaPrecoTotal::CalcularTotal($this->qtd, $this->pump_price);
+
+            //dd($this->supply);
 
             $this->supply->update([
                 'supply_pump'      => $this->supply_pump,
                 'supply_date'      => $this->supply_date,
                 'warehouse'        => $this->warehouse,
                 'third_party_code' => $this->third_party_code,
-                'vehicles_code'    => $this->vehicles_code,
+                'supply_driver'    => $this->supply_driver,
                 'vehicles_fleet'   => $this->vehicles_fleet,
                 'client_type'      => $this->client_type,
                 'vehicles_last_km' => $this->vehicles_last_km,
@@ -112,7 +114,6 @@ class SupplyEdit extends Component
                 'pump_end'         => $this->pump_end,
                 'start_time'       => $this->start_time,
                 'end_time'         => $this->end_time,
-                'hour_meter'       => $this->hour_meter,
                 'pump_price'       => $this->pump_price,
                 'pump_total_price' => $this->pump_total_price,
                 'userid_update'    => auth()->user()->id,
