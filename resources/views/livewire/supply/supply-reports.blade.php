@@ -72,9 +72,9 @@
             <tr style="background-color: #eee; text-align: left;">
                 <th>Data</th>
                 <th>Hora</th>
-                <th>Bomba</th>
                 <th>Terceiro</th>
                 <th>Frota</th>
+                <th>KM</th>
                 <th>Quantidade</th>
                 <th>R$ Unit</th>
                 <th>R$ Total</th>
@@ -86,9 +86,9 @@
             <tr>
                 <td>{{ $item->supply_date->format('d-m-Y') }}</td>
                 <td>{{ $item->start_time }}</td>
-                <td>{{ $item->supply_pump }}</td>
                 <td>{{ $item->description }}</td>
                 <td>{{ $item->vehicles_fleet }}</td>
+                <td>{{ $item->vehicles_last_km }}</td>
                 <td>{{ $item->qtd }}</td>
                 <td>{{ number_format($item->pump_price, 2, ',', '.') }}</td>
                 <td>{{ number_format($item->pump_total_price, 2, ',', '.') }}</td>
