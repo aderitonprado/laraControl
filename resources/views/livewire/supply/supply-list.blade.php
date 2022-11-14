@@ -1,6 +1,6 @@
 <div class="container">
     <x-slot name="header">
-        <h1>Meus Abastecimentos</h1>
+        <h1 class="title">Meus Abastecimentos</h1>
 
         <div class="mt-3 mb-3 ml-auto noprint">
             <a href="{{ route('supplies.create') }}" class="btn btn-sm btn-success">Novo</a>
@@ -49,49 +49,52 @@
     </div>
 
 
-    <table class="table table-striped">
-        <thead class="thead-light">
-            <tr>
-                <th>#</th>
-                <th>Data</th>
-                <th>Terceiro</th>
-                <th>Frota</th>
-                <th>KM</th>
-                <th>QTD</th>
-                <th>R$</th>
-                <th>Valor Total</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <caption>Lista de abastecimentos</caption>
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Terceiro</th>
+                    <th scope="col">Frota</th>
+                    <th scope="col">KM</th>
+                    <th scope="col">QTD</th>
+                    <th scope="col">R$</th>
+                    <th scope="col">Valor Total</th>
+                    <th scope="col" style="max-width: 200px;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
 
-            @foreach ($supplies as $sup)
+                @foreach ($supplies as $sup)
 
-            <tr>
-                <td>{{ $sup->id }}</td>
-                <td>{{ (new DateTime($sup->supply_date))->format('d/m/Y') }}</td>
-                <td>{{ $sup->description }}</td>
-                <td>{{ $sup->vehicles_fleet }}</td>
-                <td>{{ $sup->vehicles_last_km }}</td>
-                <td>{{ $sup->qtd }}</td>
-                <td>R$ {{ number_format($sup->pump_price, 2, ',', '.') }}</td>
-                <td>R$ {{ number_format($sup->pump_total_price, 2, ',', '.') }}</td>
-                <td>
-                    <a href="{{ route('supplies.show', $sup->id) }}" class="btn btn-sm btn-light">Ver
-                    </a>
-                    <a href="{{ route('supplies.edit', $sup->id) }}" class="btn btn-sm btn-primary">Editar
-                    </a>
-                    <a href="#" wire:click.prevent="remove({{ $sup->id }})" class="btn btn-sm btn-danger">Remover</a>
-                </td>
-            </tr>
+                <tr>
+                    <th scope="row">{{ $sup->id }}</th>
+                    <td>{{ (new DateTime($sup->supply_date))->format('d/m/Y') }}</td>
+                    <td>{{ $sup->description }}</td>
+                    <td>{{ $sup->vehicles_fleet }}</td>
+                    <td>{{ $sup->vehicles_last_km }}</td>
+                    <td>{{ $sup->qtd }}</td>
+                    <td>R$ {{ number_format($sup->pump_price, 2, ',', '.') }}</td>
+                    <td>R$ {{ number_format($sup->pump_total_price, 2, ',', '.') }}</td>
+                    <td class="d-flex flex-row" style="justify-content: space-between; max-width: 200px;" role="group" aria-label="Botões de Controle">
+                        <a href="{{ route('supplies.show', $sup->id) }}" class="btn btn-sm btn-outline-success">Ver
+                        </a>
+                        <a href="{{ route('supplies.edit', $sup->id) }}" class="btn btn-sm btn-primary">Editar
+                        </a>
+                        <a href="#" wire:click.prevent="remove({{ $sup->id }})" class="btn btn-sm btn-danger">Remover</a>
+                    </td>
+                </tr>
 
-            @endforeach
+                @endforeach
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 
     <!-- PAGINAÇÃO AQUI ----->
-    
+
 </div>
 
 </div>
