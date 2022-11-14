@@ -48,6 +48,12 @@ class Supply extends Model
         $this->attributes['pump_price'] = $valor * 100;   
     }
 
+    // MUTATOR PUMP TOTAL PRICE
+    public function setPumpTotalPriceAttribute($valor)
+    {
+        return $this->attributes['pump_total_price'] = $valor * 100;
+    }
+    
     // ACESSOR PUMP TOTAL PRICE
     public function getPumpTotalPriceAttribute()
     {

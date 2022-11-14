@@ -192,7 +192,7 @@
 
                     <div class="col-sm-2">
                         <div class="form-group">
-                        <label for="end_time">Preço da Bomba</label>
+                        <label for="pump_price">Preço da Bomba</label>
                             <input type="text" name="pump_price" disabled class="form-control @error('pump_price') border border-danger @enderror" placeholder="R$ 0,00" aria-label="pump_price" aria-describedby="pump_price" wire:model="pump_price">
                         </div>
 
