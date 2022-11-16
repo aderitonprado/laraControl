@@ -50,21 +50,22 @@
     </div>
 
 
-    <table class="table table-striped">
-        <thead class="thead-light">
-            <tr>
-                <th>#</th>
-                <th>Descrição</th>
-                <th>Cod Terceiro</th>
-                <th>Obs</th>
-                <th>Status</th>
-                <th>Criado em</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>#</th>
+                    <th>Descrição</th>
+                    <th>Cod Terceiro</th>
+                    <th>Obs</th>
+                    <th>Status</th>
+                    <th>Criado em</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
 
-            @foreach ($thirdparties as $third)
+                @foreach ($thirdparties as $third)
 
                 <tr>
                     <td>{{ $third->id           != null ? $third->id : '' }}</td>
@@ -78,15 +79,15 @@
                         </a>
                         <a href="{{ route('thirdparties.edit', $third->id) }}" class="btn btn-sm btn-primary">Editar
                         </a>
-                        <a href="#" wire:click.prevent="remove({{ $third->id }})"
-                            class="btn btn-sm btn-danger">Remover</a>
+                        <a href="#" wire:click.prevent="remove({{ $third->id }})" class="btn btn-sm btn-danger">Remover</a>
                     </td>
                 </tr>
 
-            @endforeach
+                @endforeach
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 
     <!-- PAGINAÇÃO AQUI ----->
 </div>
