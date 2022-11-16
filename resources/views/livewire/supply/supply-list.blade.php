@@ -10,7 +10,7 @@
 
     <div class="row mb-3 noprint">
 
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <div class="type">
                 <span>Carregar</span>
                 <select name="type" id="" wire:model="take" class="form-control">
@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <div class="type">
                 <span>Tipo</span>
                 <select name="type" id="" wire:model="type" class="form-control">
@@ -33,14 +33,28 @@
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-2">
+            <div class="search">
+                <span>Frota</span>
+                <input type="search" name="fleet" class="form-control @error('fleet') border border-danger @enderror" placeholder="Pesquise a frota" aria-label="fleet" aria-describedby="fleet" wire:model="fleet">
+            </div>
+        </div>
+
+        <div class="col-sm-2">
+            <div class="search">
+                <span>Placa</span>
+                <input type="search" name="vehicles_plate" class="form-control @error('vehicles_plate') border border-danger @enderror" placeholder="Pesquise a Placa" aria-label="vehicles_plate" aria-describedby="vehicles_plate" wire:model="vehicles_plate">
+            </div>
+        </div>
+
+        <div class="col-sm-2">
             <div class="search">
                 <span>Buscar</span>
                 <input type="date" wire:model="start_date" class="form-control">
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <div class="search">
                 <span>Buscar</span>
                 <input type="date" wire:model="end_date" class="form-control">
@@ -58,6 +72,7 @@
                     <th scope="col">Data</th>
                     <th scope="col">Terceiro</th>
                     <th scope="col">Frota</th>
+                    <th scope="col">Placa</th>
                     <th scope="col">KM</th>
                     <th scope="col">QTD</th>
                     <th scope="col">R$</th>
@@ -74,6 +89,7 @@
                     <td>{{ (new DateTime($sup->supply_date))->format('d/m/Y') }}</td>
                     <td>{{ $sup->description }}</td>
                     <td>{{ $sup->vehicles_fleet }}</td>
+                    <td>{{ $sup->vehicles_plate }}</td>
                     <td>{{ $sup->vehicles_last_km }}</td>
                     <td>{{ $sup->qtd }}</td>
                     <td>R$ {{ number_format($sup->pump_price, 2, ',', '.') }}</td>
