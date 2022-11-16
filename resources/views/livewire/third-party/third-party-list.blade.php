@@ -54,13 +54,13 @@
         <table class="table table-striped table-sm">
             <thead class="thead-light">
                 <tr>
-                    <th>#</th>
-                    <th>Descrição</th>
-                    <th>Cod Terceiro</th>
-                    <th>Obs</th>
-                    <th>Status</th>
-                    <th>Criado em</th>
-                    <th>Ações</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Cod Terceiro</th>
+                    <th scope="col">Obs</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Criado em</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,13 +68,13 @@
                 @foreach ($thirdparties as $third)
 
                 <tr>
-                    <td>{{ $third->id           != null ? $third->id : '' }}</td>
+                    <th scope="row">{{ $third->id           != null ? $third->id : '' }}</th>
                     <td>{{ $third->description  != null ? $third->description : '' }}</td>
                     <td>{{ $third->third_party_code       != null ? $third->third_party_code : '' }}</td>
                     <td>{{ $third->obs          != null ? $third->obs : '' }}</td>
                     <td>{{ $third->status       == 1    ? 'Ativo' : 'Inativo' }}</td>
                     <td>{{ $third->created_at   != null ? $third->created_at->format('d-m-Y') : '' }}</td>
-                    <td>
+                    <td class="d-flex flex-row" style="justify-content: space-between; max-width: 200px;" role="group" aria-label="Botões de Controle">
                         <a href="{{ route('thirdparties.show', $third->id) }}" class="btn btn-sm btn-light">Ver
                         </a>
                         <a href="{{ route('thirdparties.edit', $third->id) }}" class="btn btn-sm btn-primary">Editar
