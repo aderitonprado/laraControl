@@ -83,7 +83,6 @@
             <tbody>
 
                 @foreach ($supplies as $sup)
-
                 <tr>
                     <th scope="row">{{ $sup->id }}</th>
                     <td>{{ (new DateTime($sup->supply_date))->format('d/m/Y') }}</td>
@@ -110,6 +109,12 @@
     </div>
 
     <!-- PAGINAÇÃO AQUI ----->
+    {{-- Pagination --}}
+    <div class="d-flex justify-content-center">
+
+        {!! $supplies->hasPages() ? $supplies->links() : 'Vixe.. nada aqui!' !!}
+        
+    </div>
 
 </div>
 
