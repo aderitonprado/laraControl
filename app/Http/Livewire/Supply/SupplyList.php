@@ -51,11 +51,9 @@ class SupplyList extends Component
             return $queryBuilder->where('supply_date', '<=', $this->end_date);
         });
 
-        $supplies = $this->take ? $supplies->paginate($this->take) : $supplies->get();
+        $supplies = $this->take ? $supplies->paginate($this->take) : $supplies->paginate(5);
 
-        //dd($supplies);
-
-        $supplies = $supplies->count() ? $supplies : [];
+        //$supplies = $supplies->count() < 0 ? $supplies : [];
 
         return view('livewire.supply.supply-list', compact('supplies'));
     }
