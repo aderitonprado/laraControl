@@ -29,26 +29,27 @@ class SupplyEdit extends Component
     public $start_time;
     public $end_time;
     public $pump_price;
+    public $pump_manual_price = 3.5;
     public $pump_total_price;
 
     // Linhas que contém os campos que serão validados
     protected $rules = [
-        //'supply.supply_pump'        => 'required|integer|min:1',
-        //'supply.warehouse'          => 'required|integer|min:1',
-        //'supply.hour_meter'      => 'required|integer',
-        'supply.qtd'                => 'required|integer|min:1',
-        //'supply.pump_price'         => 'required|integer',
-        'supply.supply_date'        => 'required',
-        'supply.third_party_code'   => 'required|integer',
-        'supply.vehicles_fleet'     => 'required|integer',
-        'supply.client_type'        => 'required',
-        'supply.vehicles_last_km'   => 'required|integer',
-        'supply.vehicles_plate'     => 'required|min:4',
-        'supply.supply_driver'      => 'required|min:4',
-        'supply.pump_start'         => 'required',
-        'supply.pump_end'           => 'required',
-        'supply.start_time'         => 'required',
-        'supply.end_time'           => 'required',
+        //'supply_pump'        => 'required|integer|min:1',
+        //'warehouse'          => 'required|integer|min:1',
+        //'hour_meter'         => 'required|integer',
+        'qtd'                => 'required|integer|min:1',
+        //'pump_price'         => 'required|integer',
+        'supply_date'        => 'required',
+        'third_party_code'   => 'required|integer',
+        'vehicles_fleet'     => 'required|integer',
+        'client_type'        => 'required',
+        'vehicles_last_km'   => 'required|integer',
+        'vehicles_plate'     => 'required|min:4',
+        'supply_driver'      => 'required|min:4',
+        'pump_start'         => 'required',
+        'pump_end'           => 'required',
+        'start_time'         => 'required',
+        'end_time'           => 'required',
 
     ];
 
@@ -73,14 +74,14 @@ class SupplyEdit extends Component
         $this->pump_end         = $this->supply->pump_end;
         $this->start_time       = $this->supply->start_time;
         $this->end_time         = $this->supply->end_time;
-        $this->pump_price       = number_format($this->supply->pump_price, 2, ',', '.');
+        $this->pump_price       = $this->supply->pump_price;
 
     }
 
     public function updateSupply()
     {
 
-        //$this->validate();
+        $this->validate();
 
         // calculo que resulta na quantidade do abastecimento
         $this->qtd = CalculaQtd::Calcular(intval($this->pump_start), intval($this->pump_end));
@@ -92,11 +93,7 @@ class SupplyEdit extends Component
 
         } else {
 
-            $this->pump_price = filter_var($this->pump_price, FILTER_SANITIZE_NUMBER_FLOAT);
-
-            $this->pump_total_price = CalculaPrecoTotal::CalcularTotal($this->qtd, $this->pump_price);
-
-            //dd($this->supply);
+            $this->pump_total_price = CalculaPrecoTotal::CalcularTotal($this->qtd, $this->pump_manual_price);
 
             $this->supply->update([
                 'supply_pump'      => $this->supply_pump,
@@ -114,7 +111,7 @@ class SupplyEdit extends Component
                 'pump_end'         => $this->pump_end,
                 'start_time'       => $this->start_time,
                 'end_time'         => $this->end_time,
-                'pump_price'       => $this->pump_price,
+                'pump_price'       => $this->pump_manual_price,
                 'pump_total_price' => $this->pump_total_price,
                 'userid_update'    => auth()->user()->id,
 
