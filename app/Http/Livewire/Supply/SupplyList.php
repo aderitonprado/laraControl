@@ -40,7 +40,7 @@ class SupplyList extends Component
         });
 
         $supplies->when($this->vehicles_plate, function ($queryBuilder) {
-            return $queryBuilder->where('vehicles_plate', $this->vehicles_plate);
+            return $queryBuilder->where('vehicles_plate', 'LIKE', '%' . $this->vehicles_plate . '%');
         });
 
         $supplies->when($this->start_date, function($queryBuilder){
