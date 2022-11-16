@@ -8,6 +8,6 @@ class CalculaPrecoTotal
     {
 
         // calculo que retorna o calculo
-        return intval($preco * $qtd);
+        return ($preco * $qtd);
     }
 }
