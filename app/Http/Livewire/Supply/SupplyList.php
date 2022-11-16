@@ -51,7 +51,7 @@ class SupplyList extends Component
             return $queryBuilder->where('supply_date', '<=', $this->end_date);
         });
 
-        $supplies = $this->take ? $supplies->paginate($this->take) : $supplies->paginate(20);
+        $supplies = $this->take ? $supplies->paginate($this->take) : $supplies->paginate(15);
 
         //$supplies = $supplies->count() < 0 ? $supplies : [];
 
