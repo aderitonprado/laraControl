@@ -15,6 +15,8 @@ class SupplyList extends Component
 
     public $search = null;
     public $type = null;
+    public $fleet = null;
+    public $vehicles_plate = null;
     public $start_date = null;
     public $end_date = null;
     public $take;
@@ -31,6 +33,14 @@ class SupplyList extends Component
 
         $supplies->when($this->type, function($queryBuilder){
             return $queryBuilder->where('client_type', $this->type);
+        });
+
+        $supplies->when($this->fleet, function ($queryBuilder) {
+            return $queryBuilder->where('vehicles_fleet', $this->fleet);
+        });
+
+        $supplies->when($this->vehicles_plate, function ($queryBuilder) {
+            return $queryBuilder->where('vehicles_plate', $this->vehicles_plate);
         });
 
         $supplies->when($this->start_date, function($queryBuilder){
