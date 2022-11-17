@@ -14,7 +14,7 @@
                     <div class="col-sm-8">
                         <div class="input-group">
                             <input type="text" name="description"
-                                class="form-control @error('description') border border-danger @enderror"
+                                class="form-control @error('thirdparties.description') border border-danger @enderror"
                                 placeholder="Descrição" aria-label="description" aria-describedby="description"
                                 wire:model="thirdparties.description">
                         </div>
