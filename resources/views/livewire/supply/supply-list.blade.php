@@ -112,7 +112,7 @@
     {{-- Pagination --}}
     <div class="d-flex justify-content-center">
 
-        {!! $supplies->hasPages() ? $supplies->links() : 'Vixe.. nada aqui!' !!}
+        {!! $supplies->hasPages() ? $supplies->links() : ($supplies->count() <= 0 ? 'Vixe.. nada aqui!' : '') !!}
         
     </div>
 
