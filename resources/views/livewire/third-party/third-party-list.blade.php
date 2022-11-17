@@ -24,6 +24,13 @@
         </div>
 
         <div class="col-sm-3">
+            <div class="search">
+                <span>Descrição</span>
+                <input type="search" name="description" class="form-control" placeholder="Pesquise o nome" aria-label="description" aria-describedby="description" wire:model="description">
+            </div>
+        </div>
+
+        <div class="col-sm-2">
             <div class="type">
                 <span>Ativo/Inativo</span>
                 <select name="status" id="" wire:model="status" class="form-control">
@@ -34,14 +41,14 @@
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <div class="search">
                 <span>Criado a partir de</span>
                 <input type="date" wire:model="start_date" class="form-control">
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <div class="search">
                 <span>Criado até</span>
                 <input type="date" wire:model="end_date" class="form-control">
@@ -52,6 +59,7 @@
 
     <div class="table-responsive">
         <table class="table table-striped table-sm">
+        <caption>Lista de Terceiros</caption>
             <thead class="thead-light">
                 <tr>
                     <th scope="col">#</th>
@@ -90,4 +98,10 @@
     </div>
 
     <!-- PAGINAÇÃO AQUI ----->
+    {{-- Pagination --}}
+    <div class="d-flex justify-content-center">
+
+        {!! $thirdparties->hasPages() ? $thirdparties->links() : ($thirdparties->count() <= 0 ? 'Vixe.. nada aqui!' : '') !!}
+        
+    </div>
 </div>
