@@ -9,8 +9,10 @@ use App\Models\ThirdParty;
 class ThirdPartyList extends Component
 {
     use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public $status = null;
+    public $description;
     public $start_date = null;
     public $end_date = null;
     public $take;
@@ -19,6 +21,13 @@ class ThirdPartyList extends Component
     {
         // Retorna todos os terceiros por ordem de ID Desc
         $thirdparties = ThirdParty::orderBy('id', 'DESC');
+
+        /**
+         * Retorna os terceiros respeitando a data de inicio do cadastro
+         */
+        $thirdparties->when($this->description, function ($queryBuilder) {
+            return $queryBuilder->where('description', 'LIKE', '%' . $this->description . '%');
+        });
 
         /**
          * Retorna os terceiros respeitando a data de inicio do cadastro
@@ -50,9 +59,9 @@ class ThirdPartyList extends Component
             return $queryBuilder->where('status', '=', $sts);
         });
 
-        $thirdparties = $this->take ? $thirdparties->paginate($this->take) : $thirdparties->get();
+        $thirdparties = $this->take ? $thirdparties->paginate($this->take) : $thirdparties->paginate(15);
 
-        $thirdparties = $thirdparties->count() ? $thirdparties : [];
+        // $thirdparties = $thirdparties->count() ? $thirdparties : [];
 
         return view('livewire.third-party.third-party-list', compact('thirdparties'));
     }
