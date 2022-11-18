@@ -68,6 +68,7 @@
     <hr>
 
     <table style="width: 100%; text-align: left; margin-bottom:40px;">
+        <caption class="bg-light p-1"><strong>{{ $valor_total }}</strong></caption>
         <thead>
             <tr style="background-color: #eee; text-align: left;">
                 <th>Data</th>
