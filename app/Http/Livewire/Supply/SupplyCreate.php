@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Helpers\CalculaQtd;
 use App\Helpers\CalculaPrecoTotal;
 use App\Models\ThirdParty;
+use Carbon\Carbon;
 
 class SupplyCreate extends Component
 {
@@ -69,6 +70,11 @@ class SupplyCreate extends Component
     public function render()
     {
         $thirdparties = ThirdParty::all();
+
+        $this->supply['supply_date'] = Carbon::now()->toDateString();
+        $this->supply['start_time'] = Carbon::now()->toTimeString('minutes');
+        $this->supply['end_time'] = Carbon::now()->toTimeString('minutes');
+
 
         return view('livewire.supply.supply-create', compact('thirdparties'));
     }
