@@ -1,4 +1,4 @@
-<div>
+<div class="mb-5">
     <x-slot name="header">
         <h1>Criar Abastecimento</h1>
     </x-slot>
