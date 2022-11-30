@@ -67,14 +67,16 @@ class SupplyCreate extends Component
         }
     }
 
-    public function render()
+    public function mount()
     {
-        $thirdparties = ThirdParty::all();
-
         $this->supply['supply_date'] = Carbon::now()->toDateString();
         $this->supply['start_time'] = Carbon::now()->toTimeString('minutes');
         $this->supply['end_time'] = Carbon::now()->toTimeString('minutes');
+    }
 
+    public function render()
+    {
+        $thirdparties = ThirdParty::all();
 
         return view('livewire.supply.supply-create', compact('thirdparties'));
     }
