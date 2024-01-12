@@ -137,6 +137,9 @@
                             <input id="qtd" type="text" name="qtd" class="form-control" placeholder="Quantidade" aria-label="qtd" aria-describedby="qtd" wire:model="supply.qtd">
                         </div>
 
+                        @error('supply.qtd')
+                        <p class="text-danger"><small>{{ $message }}</small></p>
+                        @enderror
                     </div>
 
                     <div class="col-sm-3">
