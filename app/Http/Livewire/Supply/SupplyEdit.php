@@ -24,8 +24,8 @@ class SupplyEdit extends Component
     public $vehicles_plate;
     public $obs;
     public $qtd;
-    public $pump_start;
-    public $pump_end;
+    public $pump_start = 1;
+    public $pump_end = 1;
     public $start_time;
     public $end_time;
     public $pump_price;
@@ -46,8 +46,6 @@ class SupplyEdit extends Component
         'vehicles_last_km'   => 'required|integer',
         'vehicles_plate'     => 'required|min:4',
         'supply_driver'      => 'required|min:4',
-        'pump_start'         => 'required',
-        'pump_end'           => 'required',
         'start_time'         => 'required',
         'end_time'           => 'required',
 
@@ -82,9 +80,6 @@ class SupplyEdit extends Component
     {
 
         $this->validate();
-
-        // calculo que resulta na quantidade do abastecimento
-        $this->qtd = CalculaQtd::Calcular(intval($this->pump_start), intval($this->pump_end));
 
         // se o valor da quantidade for maior que zero, o abastecimento é gravado
         if (intval($this->qtd) <= 0) {
