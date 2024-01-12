@@ -73,7 +73,6 @@ class SupplyEdit extends Component
         $this->start_time       = $this->supply->start_time;
         $this->end_time         = $this->supply->end_time;
         $this->pump_price       = $this->supply->pump_price;
-
     }
 
     public function updateSupply()
@@ -81,41 +80,33 @@ class SupplyEdit extends Component
 
         $this->validate();
 
-        // se o valor da quantidade for maior que zero, o abastecimento é gravado
-        if (intval($this->qtd) <= 0) {
+        $this->pump_total_price = CalculaPrecoTotal::CalcularTotal($this->qtd, $this->pump_manual_price);
 
-            session()->flash('message', 'Quantidade não pode ser zero!');
+        $this->supply->update([
+            'supply_pump'      => $this->supply_pump,
+            'supply_date'      => $this->supply_date,
+            'warehouse'        => $this->warehouse,
+            'third_party_code' => $this->third_party_code,
+            'supply_driver'    => $this->supply_driver,
+            'vehicles_fleet'   => $this->vehicles_fleet,
+            'client_type'      => $this->client_type,
+            'vehicles_last_km' => $this->vehicles_last_km,
+            'vehicles_plate'   => $this->vehicles_plate,
+            'obs'              => $this->obs,
+            'qtd'              => $this->qtd,
+            'pump_start'       => $this->pump_start,
+            'pump_end'         => $this->pump_end,
+            'start_time'       => $this->start_time,
+            'end_time'         => $this->end_time,
+            'pump_price'       => $this->pump_manual_price,
+            'pump_total_price' => $this->pump_total_price,
+            'userid_update'    => auth()->user()->id,
 
-        } else {
+        ]);
 
-            $this->pump_total_price = CalculaPrecoTotal::CalcularTotal($this->qtd, $this->pump_manual_price);
+        session()->flash('message', 'Abastecimento atualizado com sucesso!');
 
-            $this->supply->update([
-                'supply_pump'      => $this->supply_pump,
-                'supply_date'      => $this->supply_date,
-                'warehouse'        => $this->warehouse,
-                'third_party_code' => $this->third_party_code,
-                'supply_driver'    => $this->supply_driver,
-                'vehicles_fleet'   => $this->vehicles_fleet,
-                'client_type'      => $this->client_type,
-                'vehicles_last_km' => $this->vehicles_last_km,
-                'vehicles_plate'   => $this->vehicles_plate,
-                'obs'              => $this->obs,
-                'qtd'              => $this->qtd,
-                'pump_start'       => $this->pump_start,
-                'pump_end'         => $this->pump_end,
-                'start_time'       => $this->start_time,
-                'end_time'         => $this->end_time,
-                'pump_price'       => $this->pump_manual_price,
-                'pump_total_price' => $this->pump_total_price,
-                'userid_update'    => auth()->user()->id,
-
-            ]);
-
-            session()->flash('message', 'Abastecimento atualizado com sucesso!');
-
-            return redirect('/supplies');
-        }
+        return redirect('/supplies');
     }
 
     public function render()
