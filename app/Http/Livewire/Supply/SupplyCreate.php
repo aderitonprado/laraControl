@@ -30,6 +30,7 @@ class SupplyCreate extends Component
         //'supply.pump_end'           => 'required',
         'supply.start_time'         => 'required',
         'supply.end_time'           => 'required',
+        'supply.qtd'                => 'required|integer|min:1'
 
     ];
 
