@@ -8,6 +8,8 @@
         </div>
     </x-slot>
 
+    @include('includes.message')
+
     <div class="row mb-3 noprint">
 
         <div class="col-sm-2">

@@ -12,18 +12,6 @@
                 <div class="row mb-3">
                     <div class="col-sm-4">
                         <div class="input-group">
-                            <select name="supply_pump" class="form-control @error('supply.supply_pump') border border-danger @enderror" aria-label="supply_pump" aria-describedby="supply_pump" wire:model="supply.supply_pump">
-                                <option value="1">1 - Alcool Hidratado</option>
-                            </select>
-                        </div>
-
-                        @error('supply.supply_pump')
-                        <p class="text-danger"><small>{{ $message }}</small></p>
-                        @enderror
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="input-group">
                             <input type="date" name="supply_date" class="form-control @error('supply.supply_date') border border-danger @enderror" placeholder="Data do Abastecimento" aria-label="supply_date" aria-describedby="supply_date" wire:model="supply.supply_date">
                         </div>
 
@@ -46,11 +34,7 @@
                         <p class="text-danger"><small>{{ $message }}</small></p>
                         @enderror
                     </div>
-                </div>
 
-                <!-- LINHA 2 -->
-
-                <div class="row mb-3">
                     <div class="col-sm-4">
                         <div class="input-group">
                             <select name="client_type" class="form-control @error('supply.client_type') border border-danger @enderror" aria-label="client_type" aria-describedby="client_type" wire:model="supply.client_type">
@@ -64,8 +48,12 @@
                         <p class="text-danger"><small>{{ $message }}</small></p>
                         @enderror
                     </div>
+                </div>
 
-                    <div class="col-sm-4">
+                <!-- LINHA 2 -->
+
+                <div class="row mb-3">
+                    <div class="col-sm-3">
                         <div class="input-group">
                             <input type="text" name="vehicles_fleet" class="form-control @error('supply.vehicles_fleet') border border-danger @enderror" placeholder="Frota" aria-label="vehicles_fleet" aria-describedby="vehicles_fleet" wire:model="supply.vehicles_fleet">
                         </div>
@@ -75,7 +63,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="input-group">
                             <input type="text" name="supply_driver" class="form-control" placeholder="Nome do Motorista" aria-label="supply_driver" aria-describedby="supply_driver" wire:model="supply.supply_driver">
                         </div>
@@ -84,12 +72,8 @@
                         <p class="text-danger"><small>{{ $message }}</small></p>
                         @enderror
                     </div>
-                </div>
 
-                <!--- LINHA 3 ---->
-
-                <div class="row mb-3">
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="input-group">
                             <input type="text" name="vehicles_last_km" class="form-control @error('supply.vehicles_last_km') border border-danger @enderror" placeholder="KM do Veiculo" aria-label="vehicles_last_km" aria-describedby="vehicles_last_km" wire:model="supply.vehicles_last_km">
                         </div>
@@ -99,7 +83,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="input-group">
                             <input type="text" name="vehicles_plate" class="form-control @error('supply.vehicles_plate') border border-danger @enderror" placeholder="Placa do Veiculo" aria-label="vehicles_plate" aria-describedby="vehicles_plate" wire:model="supply.vehicles_plate">
                         </div>
@@ -108,7 +92,6 @@
                         <p class="text-danger"><small>{{ $message }}</small></p>
                         @enderror
                     </div>
-
                 </div>
 
                 <!--- LINHA 4 --------------->
@@ -126,7 +109,7 @@
 
                 <!--- LINHA 5 --------------->
                 <div class="row mb-3">
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label for="end_time">Hora Inicial abast</label>
                             <input type="time" name="start_time" class="form-control @error('supply.start_time') border border-danger @enderror" placeholder="Hora Inicial" aria-label="start_time" aria-describedby="start_time" wire:model="supply.start_time">
@@ -137,7 +120,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <div class="form-group">
                             <label for="end_time">Hora Final abast</label>
                             <input type="time" name="end_time" class="form-control @error('supply.end_time') border border-danger @enderror" placeholder="Hora Final" aria-label="end_time" aria-describedby="end_time" wire:model="supply.end_time">
@@ -150,39 +133,13 @@
 
                     <div class="col-sm-3">
                         <div class="form-group">
-                        <label for="pump_start">Inicio da Bomba</label>
-                            <input type="number" name="pump_start" class="form-control @error('supply.pump_start') border border-danger @enderror" placeholder="Ínicio da bomba" aria-label="pump_start" aria-describedby="pump_start" wire:model="supply.pump_start">
+                        <label for="qtd">Quantidade</label>
+                            <input id="qtd" type="text" name="qtd" class="form-control" placeholder="Quantidade" aria-label="qtd" aria-describedby="qtd" wire:model="supply.qtd">
                         </div>
 
-                        @error('supply.pump_start')
-                        <p class="text-danger"><small>{{ $message }}</small></p>
-                        @enderror
                     </div>
 
                     <div class="col-sm-3">
-                        <div class="form-group">
-                        <label for="pump_start">Fim da Bomba</label>
-                            <input type="number" name="pump_end" class="form-control @error('supply.pump_end') border border-danger @enderror" placeholder="Fim da bomba" aria-label="pump_end" aria-describedby="pump_end" wire:model="supply.pump_end" onchange="calculaQtd()">
-                        </div>
-
-                        @error('supply.pump_end')
-                        <p class="text-danger"><small>{{ $message }}</small></p>
-                        @enderror
-                    </div>
-
-                </div>
-
-                <!---- LINHA 6 ---------->
-                <div class="row mb-4">
-                    <div class="col-sm-2">
-                        <div class="form-group">
-                        <label for="qtd">Quantidade</label>
-                            <input id="qtd" type="text" name="qtd" class="form-control" placeholder="Quantidade" aria-label="qtd" aria-describedby="qtd" disabled>
-                        </div>
-
-                    </div>
-
-                    <div class="col-sm-2">
                         <div class="form-group">
                         <label for="pump_price">Preço da Bomba</label>
                             <input type="text" name="pump_price" disabled class="form-control @error('supply.pump_price') border border-danger @enderror" placeholder="R$ 0,00" aria-label="pump_price" aria-describedby="pump_price" wire:model="supply.pump_price">
@@ -192,9 +149,10 @@
                         <p class="text-danger"><small>{{ $message }}</small></p>
                         @enderror
                     </div>
+
                 </div>
 
-                <!---- LINHA 7 ---------->
+                <!---- LINHA 6 ---------->
                 <div class="row mb-4">
                     
                 
@@ -213,7 +171,7 @@
 </div>
 </div>
 
-<script>
+{{-- <script>
     function calculaQtd() {
 
         let form = document.querySelector('form[name=createSupply]');
@@ -232,4 +190,4 @@
         document.getElementById("qtd").value = qtd;
 
     }
-</script>
+</script> --}}
