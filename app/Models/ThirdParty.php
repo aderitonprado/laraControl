@@ -9,7 +9,7 @@ class ThirdParty extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['description', 'description_aux', 'third_party_code', 'obs', 'status', 'user_id'];
+    protected $fillable = ['description', 'description_aux', 'third_party_code', 'plate' ,'obs', 'status', 'user_id'];
 
     Public function user()
     {
