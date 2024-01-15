@@ -12,11 +12,11 @@ class ThirdPartyShow extends Component
 
     public function mount()
     {
-        $this->thirdparties['description'] = $this->thirdparty->description;
-        $this->thirdparties['description_aux'] = $this->thirdparty->description_aux;
+        $this->thirdparties['description']      = $this->thirdparty->description;
         $this->thirdparties['third_party_code'] = $this->thirdparty->third_party_code;
-        $this->thirdparties['obs'] = $this->thirdparty->obs;
-        $this->thirdparties['status'] = $this->thirdparty->status; 
+        $this->thirdparties['plate']            = $this->thirdparty->plate;
+        $this->thirdparties['obs']              = $this->thirdparty->obs;
+        $this->thirdparties['status']           = $this->thirdparty->status;
     }
 
     public function render()
