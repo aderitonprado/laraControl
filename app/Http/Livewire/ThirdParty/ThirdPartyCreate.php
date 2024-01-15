@@ -10,8 +10,8 @@ class ThirdPartyCreate extends Component
 
     protected $rules = [
         'thirdparty.description'       => 'required|string|min:4',
-        'thirdparty.description_aux'   => 'required',
         'thirdparty.third_party_code'  => 'required|min:4',
+        'thirdparty.plate'             => 'required|min:7',
         //'thirdparty.obs'               => 'required|min:5',
         'thirdparty.status'            => 'required|integer|min:1',
     ];
