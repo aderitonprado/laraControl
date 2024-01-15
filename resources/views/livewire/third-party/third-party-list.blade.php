@@ -1,6 +1,6 @@
 <div class="container">
     <x-slot name="header">
-        <h1>Meus Terceiros</h1>
+        <h1>Minhas Frotas</h1>
 
         <div class="mt-3 mb-3 ml-auto noprint">
             <a href="{{ route('thirdparties.create') }}" class="btn btn-sm btn-success">Novo</a>
@@ -65,7 +65,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Descrição</th>
                     <th scope="col">Cod Terceiro</th>
-                    <th scope="col">Obs</th>
+                    <th scope="col">Placa</th>
                     <th scope="col">Status</th>
                     <th scope="col">Criado em</th>
                     <th scope="col">Ações</th>
@@ -76,12 +76,12 @@
                 @foreach ($thirdparties as $third)
 
                 <tr>
-                    <th scope="row">{{ $third->id           != null ? $third->id : '' }}</th>
-                    <td>{{ $third->description  != null ? $third->description : '' }}</td>
-                    <td>{{ $third->third_party_code       != null ? $third->third_party_code : '' }}</td>
-                    <td>{{ $third->obs          != null ? $third->obs : '' }}</td>
-                    <td>{{ $third->status       == 1    ? 'Ativo' : 'Inativo' }}</td>
-                    <td>{{ $third->created_at   != null ? $third->created_at->format('d-m-Y') : '' }}</td>
+                    <th scope="row">{{ $third->id   != null ? $third->id : '' }}</th>
+                    <td>{{ $third->description      != null ? $third->description : '' }}</td>
+                    <td>{{ $third->third_party_code != null ? $third->third_party_code : '' }}</td>
+                    <td>{{ $third->plate            != null ? $third->plate : '' }}</td>
+                    <td>{{ $third->status           == 1    ? 'Ativo' : 'Inativo' }}</td>
+                    <td>{{ $third->created_at       != null ? $third->created_at->format('d-m-Y') : '' }}</td>
                     <td class="d-flex flex-row" style="justify-content: space-between; max-width: 200px;" role="group" aria-label="Botões de Controle">
                         <a href="{{ route('thirdparties.show', $third->id) }}" class="btn btn-sm btn-light">Ver
                         </a>
