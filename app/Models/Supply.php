@@ -66,6 +66,11 @@ class Supply extends Model
         return $this->attributes['supply_date'] = (\DateTime::createFromFormat('d/m/Y H:i:s', $prop))->format('Y-m-d H:i:s');
     }
 
+    public function thirdy_parties()
+    {
+        return $this->belongsTo(ThirdParty::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
