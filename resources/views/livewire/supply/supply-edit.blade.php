@@ -27,7 +27,7 @@
                         <div class="input-group">
                             <input type="search" name="third_party_code" list="thirdparties"
                                 class="form-control @error('third_party_code') border border-danger @enderror"
-                                placeholder="Código do Terceiro" aria-label="third_party_code"
+                                placeholder="Número da Frota" aria-label="third_party_code"
                                 aria-describedby="third_party_code" wire:model="third_party_code">
                             <datalist id="thirdparties">
                                 @foreach ($thirdparties as $tp)
@@ -62,20 +62,7 @@
                 <!-- LINHA 2 -->
 
                 <div class="row mb-3">
-                    <div class="col-sm-3">
-                        <div class="input-group">
-                            <input type="text" name="vehicles_fleet"
-                                class="form-control @error('vehicles_fleet') border border-danger @enderror"
-                                placeholder="Frota" aria-label="vehicles_fleet" aria-describedby="vehicles_fleet"
-                                wire:model="vehicles_fleet">
-                        </div>
-
-                        @error('vehicles_fleet')
-                            <p class="text-danger"><small>{{ $message }}</small></p>
-                        @enderror
-                    </div>
-
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="input-group">
                             <input type="text" name="supply_driver"
                                 class="form-control @error('supply_driver') border border-danger @enderror"
@@ -88,7 +75,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="input-group">
                             <input type="text" name="vehicles_last_km"
                                 class="form-control @error('vehicles_last_km') border border-danger @enderror"
@@ -101,7 +88,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="input-group">
                             <input type="text" name="vehicles_plate"
                                 class="form-control @error('vehicles_plate') border border-danger @enderror"

@@ -38,14 +38,18 @@
         <div class="col-sm-2">
             <div class="search">
                 <span>Frota</span>
-                <input type="search" name="fleet" class="form-control @error('fleet') border border-danger @enderror" placeholder="Pesquise a frota" aria-label="fleet" aria-describedby="fleet" wire:model="fleet">
+                <input type="search" name="fleet" class="form-control @error('fleet') border border-danger @enderror"
+                    placeholder="Pesquise a frota" aria-label="fleet" aria-describedby="fleet" wire:model="fleet">
             </div>
         </div>
 
         <div class="col-sm-2">
             <div class="search">
                 <span>Placa</span>
-                <input type="search" name="vehicles_plate" class="form-control @error('vehicles_plate') border border-danger @enderror" placeholder="Pesquise a Placa" aria-label="vehicles_plate" aria-describedby="vehicles_plate" wire:model="vehicles_plate">
+                <input type="search" name="vehicles_plate"
+                    class="form-control @error('vehicles_plate') border border-danger @enderror"
+                    placeholder="Pesquise a Placa" aria-label="vehicles_plate" aria-describedby="vehicles_plate"
+                    wire:model="vehicles_plate">
             </div>
         </div>
 
@@ -64,7 +68,6 @@
         </div>
     </div>
 
-
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <caption>Lista de abastecimentos</caption>
@@ -72,8 +75,8 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Data</th>
-                    <th scope="col">Terceiro</th>
                     <th scope="col">Frota</th>
+                    <th scope="col">Num. Frota</th>
                     <th scope="col">Placa</th>
                     <th scope="col">KM</th>
                     <th scope="col">QTD</th>
@@ -85,25 +88,26 @@
             <tbody>
 
                 @foreach ($supplies as $sup)
-                <tr>
-                    <th scope="row">{{ $sup->id }}</th>
-                    <td>{{ (new DateTime($sup->supply_date))->format('d/m/Y') }}</td>
-                    <td>{{ $sup->description }}</td>
-                    <td>{{ $sup->vehicles_fleet }}</td>
-                    <td>{{ $sup->vehicles_plate }}</td>
-                    <td>{{ $sup->vehicles_last_km }}</td>
-                    <td>{{ $sup->qtd }}</td>
-                    <td>R$ {{ number_format($sup->pump_price, 2, ',', '.') }}</td>
-                    <td>R$ {{ number_format($sup->pump_total_price, 2, ',', '.') }}</td>
-                    <td class="d-flex flex-row" style="justify-content: space-between; max-width: 200px;" role="group" aria-label="Botões de Controle">
-                        <a href="{{ route('supplies.show', $sup->id) }}" class="btn btn-sm btn-outline-success">Ver
-                        </a>
-                        <a href="{{ route('supplies.edit', $sup->id) }}" class="btn btn-sm btn-primary">Editar
-                        </a>
-                        <a href="#" wire:click.prevent="remove({{ $sup->id }})" class="btn btn-sm btn-danger">Remover</a>
-                    </td>
-                </tr>
-
+                    <tr>
+                        <th scope="row">{{ $sup->id }}</th>
+                        <td>{{ (new DateTime($sup->supply_date))->format('d/m/Y') }}</td>
+                        <td>{{ $sup->description }}</td>
+                        <td>{{ $sup->third_party_code }}</td>
+                        <td>{{ $sup->vehicles_plate }}</td>
+                        <td>{{ $sup->vehicles_last_km }}</td>
+                        <td>{{ $sup->qtd }}</td>
+                        <td>R$ {{ number_format($sup->pump_price, 2, ',', '.') }}</td>
+                        <td>R$ {{ number_format($sup->pump_total_price, 2, ',', '.') }}</td>
+                        <td class="d-flex flex-row" style="justify-content: space-between; max-width: 200px;"
+                            role="group" aria-label="Botões de Controle">
+                            <a href="{{ route('supplies.show', $sup->id) }}" class="btn btn-sm btn-outline-success">Ver
+                            </a>
+                            <a href="{{ route('supplies.edit', $sup->id) }}" class="btn btn-sm btn-primary">Editar
+                            </a>
+                            <a href="#" wire:click.prevent="remove({{ $sup->id }})"
+                                class="btn btn-sm btn-danger">Remover</a>
+                        </td>
+                    </tr>
                 @endforeach
 
             </tbody>
@@ -115,7 +119,7 @@
     <div class="d-flex justify-content-center">
 
         {!! $supplies->hasPages() ? $supplies->links() : ($supplies->count() <= 0 ? 'Vixe.. nada aqui!' : '') !!}
-        
+
     </div>
 
 </div>
@@ -123,7 +127,8 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
