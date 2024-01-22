@@ -10,7 +10,9 @@ use Carbon\Carbon;
 
 class SupplyCreate extends Component
 {
-    public $supply = ['pump_price' => '3.5', 'warehouse' => 1, 'hour_meter' => 1, 'supply_pump' => 1, 'pump_start' => 1, 'pump_end' => 1];
+    public $supply = ['pump_price' => '3.5', 'warehouse' => 1, 'hour_meter' => 1, 'supply_pump' => 1, 'pump_start' => 1, 'pump_end' => 1, 'vehicles_fleet' => 1];
+    public $vehicles_fleet;
+    public $vehicles_plate;
 
     // Linhas que contém os campos que serão validados
     protected $rules = [
@@ -24,7 +26,7 @@ class SupplyCreate extends Component
         'supply.vehicles_fleet'     => 'required|integer',
         'supply.client_type'        => 'required',
         'supply.vehicles_last_km'   => 'required|integer',
-        'supply.vehicles_plate'     => 'required|min:4',
+        'vehicles_plate'            => 'required|min:4',
         'supply.supply_driver'      => 'required|min:4',
         //'supply.pump_start'         => 'required',
         //'supply.pump_end'           => 'required',
@@ -42,9 +44,8 @@ class SupplyCreate extends Component
         $this->supply['pump_total_price'] = CalculaPrecoTotal::CalcularTotal($this->supply['qtd'], $this->supply['pump_price']);
 
         $id_terceiro = ThirdParty::where('third_party_code', $this->supply['third_party_code'])->get();
+        $this->supply['vehicles_plate'] = ($id_terceiro->first()->plate != null || $id_terceiro->first()->plate != '') ? $id_terceiro->first()->plate : 'n';
         $this->supply['third_party_id'] = $id_terceiro->first()->id;
-
-        //dd($this->supply);
 
         auth()->user()->supplies()->create($this->supply);
         session()->flash('message', 'Abastecimento criado com sucesso!');
@@ -57,6 +58,19 @@ class SupplyCreate extends Component
         $this->supply['supply_date'] = Carbon::now()->toDateString();
         $this->supply['start_time'] = Carbon::now()->toTimeString('minutes');
         $this->supply['end_time'] = Carbon::now()->toTimeString('minutes');
+        //$this->supply['vehicles_fleet'] = ThirdParty::where('')
+    }
+
+    public function updated($vehicles_fleet)
+    {
+        $id_terceiro = ThirdParty::where('third_party_code', $this->supply['third_party_code'])->get();
+
+        if($id_terceiro->first() != null){
+            $this->vehicles_plate = ($id_terceiro->first()->plate != null || $id_terceiro->first()->plate != '') ? $id_terceiro->first()->plate : 'n';
+        } else {
+            $this->vehicles_plate = '';
+        }
+
     }
 
     public function render()

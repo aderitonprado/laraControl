@@ -17,8 +17,9 @@ class SupplyEdit extends Component
     public $supply_date;
     public $warehouse = 1;
     public $third_party_code;
+    public $third_party_id_updated;
     public $supply_driver;
-    public $vehicles_fleet;
+    public $vehicles_fleet = 1;
     public $client_type;
     public $vehicles_last_km;
     public $vehicles_plate;
@@ -55,8 +56,6 @@ class SupplyEdit extends Component
     {
         $this->thirdparties = ThirdParty::all();
 
-        //dd($this->supply->pump_price);
-
         $this->supply_pump      = $this->supply->supply_pump;
         $this->supply_date      = $this->supply->supply_date->format('Y-m-d');
         $this->warehouse        = $this->supply->warehouse;
@@ -87,6 +86,7 @@ class SupplyEdit extends Component
             'supply_date'      => $this->supply_date,
             'warehouse'        => $this->warehouse,
             'third_party_code' => $this->third_party_code,
+            'third_party_id'   => $this->third_party_id_updated,
             'supply_driver'    => $this->supply_driver,
             'vehicles_fleet'   => $this->vehicles_fleet,
             'client_type'      => $this->client_type,
@@ -107,6 +107,18 @@ class SupplyEdit extends Component
         session()->flash('message', 'Abastecimento atualizado com sucesso!');
 
         return redirect('/supplies');
+    }
+
+    public function updated($vehicles_fleet)
+    {
+        $id_terceiro = ThirdParty::where('third_party_code', $this->third_party_code)->get();
+
+        if ($id_terceiro->first() != null) {
+            $this->vehicles_plate = ($id_terceiro->first()->plate != null || $id_terceiro->first()->plate != '') ? $id_terceiro->first()->plate : '';
+            $this->third_party_id_updated = $id_terceiro->first()->id;
+        } else {
+            $this->vehicles_plate = '';
+        }
     }
 
     public function render()

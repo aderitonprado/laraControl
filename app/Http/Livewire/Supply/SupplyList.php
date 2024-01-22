@@ -24,12 +24,8 @@ class SupplyList extends Component
     public function render()
     {
         $supplies = Supply::join('third_parties', 'supplies.third_party_id', '=', 'third_parties.id')
-                    ->select('supplies.*', 'third_parties.description', 'third_parties.description_aux')
+                    ->select('supplies.*', 'third_parties.description')
                     ->orderBy('supplies.id', 'DESC');
-
-        $supplies->when($this->search, function($queryBuilder){
-            return $queryBuilder->where('supply_pump', 'LIKE', '%' . $this->search . '%');
-        });
 
         $supplies->when($this->type, function($queryBuilder){
             return $queryBuilder->where('client_type', $this->type);
