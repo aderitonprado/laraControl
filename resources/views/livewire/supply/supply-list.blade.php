@@ -91,7 +91,7 @@
                     <tr>
                         <th scope="row">{{ $sup->id }}</th>
                         <td>{{ (new DateTime($sup->supply_date))->format('d/m/Y') }}</td>
-                        <td>{{ $sup->description }}</td>
+                        <td>{{ mb_strimwidth($sup->description, 0, 48, "..."); }}</td>
                         <td>{{ $sup->third_party_code }}</td>
                         <td>{{ $sup->vehicles_plate }}</td>
                         <td>{{ $sup->vehicles_last_km }}</td>
