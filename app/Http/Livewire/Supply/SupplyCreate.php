@@ -44,7 +44,8 @@ class SupplyCreate extends Component
         $this->supply['pump_total_price'] = CalculaPrecoTotal::CalcularTotal($this->supply['qtd'], $this->supply['pump_price']);
 
         $id_terceiro = ThirdParty::where('third_party_code', $this->supply['third_party_code'])->get();
-        $this->supply['vehicles_plate'] = ($id_terceiro->first()->plate != null || $id_terceiro->first()->plate != '') ? $id_terceiro->first()->plate : 'n';
+
+        $this->supply['vehicles_plate'] = ($id_terceiro->first()->plate != null || $id_terceiro->first()->plate != '') ? $id_terceiro->first()->plate : $this->vehicles_plate;
         $this->supply['third_party_id'] = $id_terceiro->first()->id;
 
         auth()->user()->supplies()->create($this->supply);
@@ -66,9 +67,7 @@ class SupplyCreate extends Component
         $id_terceiro = ThirdParty::where('third_party_code', $this->supply['third_party_code'])->get();
 
         if($id_terceiro->first() != null){
-            $this->vehicles_plate = ($id_terceiro->first()->plate != null || $id_terceiro->first()->plate != '') ? $id_terceiro->first()->plate : 'n';
-        } else {
-            $this->vehicles_plate = '';
+            $this->vehicles_plate = ($id_terceiro->first()->plate != null || $id_terceiro->first()->plate != '') ? $id_terceiro->first()->plate : $this->vehicles_plate;
         }
 
     }

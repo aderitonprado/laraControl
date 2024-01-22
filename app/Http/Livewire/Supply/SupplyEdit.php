@@ -114,10 +114,8 @@ class SupplyEdit extends Component
         $id_terceiro = ThirdParty::where('third_party_code', $this->third_party_code)->get();
 
         if ($id_terceiro->first() != null) {
-            $this->vehicles_plate = ($id_terceiro->first()->plate != null || $id_terceiro->first()->plate != '') ? $id_terceiro->first()->plate : '';
+            $this->vehicles_plate = ($id_terceiro->first()->plate != null || $id_terceiro->first()->plate != '') ? $id_terceiro->first()->plate : $this->vehicles_plate;
             $this->third_party_id_updated = $id_terceiro->first()->id;
-        } else {
-            $this->vehicles_plate = '';
         }
     }
 
