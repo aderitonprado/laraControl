@@ -32,7 +32,7 @@ class SupplyList extends Component
         });
 
         $supplies->when($this->fleet, function ($queryBuilder) {
-            return $queryBuilder->where('vehicles_fleet', $this->fleet);
+            return $queryBuilder->where('supplies.third_party_code', 'LIKE', '%' . $this->fleet . '%');
         });
 
         $supplies->when($this->vehicles_plate, function ($queryBuilder) {
