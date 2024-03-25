@@ -34,11 +34,14 @@
         <div class="col-sm-2">
             <div class="search">
                 <span>Terceiro</span>
-                <input type="search" name="third_party_code" list="thirdparties" class="form-control @error('third_party_code') border border-danger @enderror" placeholder="Pesquise o Terceiro" aria-label="third_party_code" aria-describedby="third_party_code" wire:model="third_party_code">
+                <input type="search" name="third_party_code" list="thirdparties"
+                    class="form-control @error('third_party_code') border border-danger @enderror"
+                    placeholder="Pesquise o Terceiro" aria-label="third_party_code" aria-describedby="third_party_code"
+                    wire:model="third_party_code">
                 <datalist id="thirdparties">
-                    @foreach($thirdparties as $tp)
-                    <option value="{{$tp->third_party_code}}">{{$tp->description}}
-                        @endforeach
+                    @foreach ($thirdparties as $tp)
+                        <option value="{{ $tp->third_party_code }}">{{ $tp->description }}
+                    @endforeach
                 </datalist>
             </div>
         </div>
@@ -46,7 +49,8 @@
         <div class="col-sm-2">
             <div class="search">
                 <span>Frota</span>
-                <input type="search" name="fleet" class="form-control @error('fleet') border border-danger @enderror" placeholder="Pesquise a frota" aria-label="fleet" aria-describedby="fleet" wire:model="fleet">
+                <input type="search" name="fleet" class="form-control @error('fleet') border border-danger @enderror"
+                    placeholder="Pesquise a frota" aria-label="fleet" aria-describedby="fleet" wire:model="fleet">
             </div>
         </div>
 
@@ -60,7 +64,7 @@
         <div class="col-sm-2">
             <div class="search">
                 <span>Data Fim</span>
-                <input type="date" wire:model="end_date" class="form-control">
+                <input type="date" wire:model.debounce.500ms="end_date" class="form-control">
             </div>
         </div>
     </div>
@@ -68,7 +72,11 @@
     <hr>
 
     <table style="width: 100%; text-align: left; margin-bottom:40px;">
-        <caption class="bg-light p-1"><strong>{{ $valor_total }}</strong></caption>
+
+        @foreach ($totais as $tt)
+            <caption class="bg-light p-1"><strong>{{$tt}}</strong></caption>
+        @endforeach
+
         <thead>
             <tr style="background-color: #eee; text-align: left;">
                 <th>Data</th>
@@ -84,16 +92,16 @@
 
         <tbody>
             @foreach ($supplies as $item)
-            <tr>
-                <td>{{ $item->supply_date->format('d-m-Y') }}</td>
-                <td>{{ $item->start_time }}</td>
-                <td>{{ $item->description }}</td>
-                <td>{{ $item->vehicles_fleet }}</td>
-                <td>{{ $item->vehicles_last_km }}</td>
-                <td>{{ $item->qtd }}</td>
-                <td>{{ number_format($item->pump_price, 2, ',', '.') }}</td>
-                <td>{{ number_format($item->pump_total_price, 2, ',', '.') }}</td>
-            </tr>
+                <tr>
+                    <td>{{ (new DateTime($item->supply_date))->format('d-m-Y') }}</td>
+                    <td>{{ (new DateTime($item->start_time))->format('H:m') }}</td>
+                    <td>{{ $item->description }}</td>
+                    <td>{{ $item->vehicles_fleet }}</td>
+                    <td>{{ $item->vehicles_last_km }}</td>
+                    <td>{{ $item->qtd }}</td>
+                    <td>{{ number_format($item->pump_price, 2, ',', '.') }}</td>
+                    <td>{{ number_format($item->pump_total_price, 2, ',', '.') }}</td>
+                </tr>
             @endforeach
         </tbody>
 
