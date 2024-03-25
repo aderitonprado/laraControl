@@ -16,6 +16,8 @@ class SupplyReports extends Component
     public $end_date = null;
     public $take;
     public $valor_total = null;
+    public $litros_total = null;
+    public $totais = [];
 
     public function render()
     {
@@ -24,6 +26,7 @@ class SupplyReports extends Component
 
         $supplies = Supply::join('third_parties', 'supplies.third_party_id', '=', 'third_parties.id');
         $valor_total = $this->valor_total;
+        $totais = $this->totais;
 
         //dd($thirdparties);
 
@@ -52,10 +55,23 @@ class SupplyReports extends Component
         });
 
         if ($this->start_date && $this->end_date) {
-            $supplies->when($this->start_date, function ($queryBuilder) {
-                $this->valor_total = 'TOTAL = R$ ' . number_format($queryBuilder->sum('pump_total_price', 'BETWEEN', $this->start_date, $this->end_date) / 100, 2, ',', '.');
-                return $this->valor_total;
+
+            $supplies->when($this->end_date, function ($queryBuilder) {
+                $this->valor_total  = 'Valor = R$ ' . number_format($queryBuilder->sum('pump_total_price', 'BETWEEN', $this->start_date, $this->end_date) / 100, 2, ',', '.');
+                $this->litros_total = 'Litros = ' . $queryBuilder->sum('qtd', 'BETWEEN', $this->start_date, $this->end_date);
+
+                $this->totais = [
+                    'valor_total' => $this->valor_total,
+                    'litros_total' => $this->litros_total
+                ];
+                
+                $totais = [$this->totais];
+                
+                //dd($this->totais);
+
+                return $totais;
             });
+            
         }
 
         //$valor_total = $supplies::Raw('SELECT SUM(valor) AS total_despesas FROM lançamentos WHERE tipo_id = 1')->get();
@@ -64,6 +80,6 @@ class SupplyReports extends Component
 
         $supplies = $supplies->count() ? $supplies : [];
 
-        return view('livewire.supply.supply-reports', compact(['supplies', 'thirdparties', 'valor_total']));
+        return view('livewire.supply.supply-reports', compact(['supplies', 'thirdparties', 'totais']));
     }
 }
