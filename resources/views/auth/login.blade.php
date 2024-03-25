@@ -9,7 +9,8 @@
     <title>LaraControl - Login</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="{{ asset('assets/img/favicons/apple-touch-icon.png') }} " sizes="180x180">

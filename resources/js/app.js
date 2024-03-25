@@ -1,4 +1,7 @@
-require('./bootstrap');
+// require('./bootstrap');
+
+/* Importar o arquivo bootstrap */
+import './bootstrap';
 
 import Alpine from 'alpinejs';
 
