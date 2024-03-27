@@ -37,7 +37,7 @@ class SupplyShow extends Component
         $this->third_party_name = $this->supply->getSuppliesWithThird($this->supply->id)->first();
 
         $this->supply_pump      = $this->supply->supply_pump;
-        $this->supply_date      = $this->supply->supply_date->format('Y-m-d');
+        $this->supply_date      = $this->supply->supply_date;
         $this->warehouse        = $this->supply->warehouse;
         $this->third_party_name = $this->third_party_name->description;
         $this->vehicles_fleet   = $this->supply->vehicles_fleet;
