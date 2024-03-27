@@ -95,7 +95,7 @@
                 <tr>
                     <td>{{ (new DateTime($item->supply_date))->format('d-m-Y') }}</td>
                     <td>{{ (new DateTime($item->start_time))->format('H:m') }}</td>
-                    <td>{{ $item->description }}</td>
+                    <td>{{ mb_strimwidth($item->description, 0, 60, "..."); }}</td>
                     <td>{{ $item->vehicles_fleet }}</td>
                     <td>{{ $item->vehicles_last_km }}</td>
                     <td>{{ $item->qtd }}</td>
