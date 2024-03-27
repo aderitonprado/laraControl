@@ -7,6 +7,7 @@ use App\Models\ThirdParty;
 use Livewire\Component;
 use App\Helpers\CalculaQtd;
 use App\Helpers\CalculaPrecoTotal;
+use Illuminate\Support\Facades\Auth;
 
 class SupplyEdit extends Component
 {
@@ -72,6 +73,8 @@ class SupplyEdit extends Component
         $this->start_time       = $this->supply->start_time;
         $this->end_time         = $this->supply->end_time;
         $this->pump_price       = $this->supply->pump_price;
+
+        $this->third_party_id_updated = $this->supply->id;
     }
 
     public function updateSupply()
@@ -80,6 +83,8 @@ class SupplyEdit extends Component
         $this->validate();
 
         $this->pump_total_price = CalculaPrecoTotal::CalcularTotal($this->qtd, $this->pump_manual_price);
+
+        //dd($this->third_party_id_updated);
 
         $this->supply->update([
             'supply_pump'      => $this->supply_pump,
@@ -100,7 +105,7 @@ class SupplyEdit extends Component
             'end_time'         => $this->end_time,
             'pump_price'       => $this->pump_manual_price,
             'pump_total_price' => $this->pump_total_price,
-            'userid_update'    => auth()->user()->id,
+            'userid_update'    => Auth::id(),
 
         ]);
 
@@ -117,6 +122,7 @@ class SupplyEdit extends Component
             $this->vehicles_plate = ($id_terceiro->first()->plate != null || $id_terceiro->first()->plate != '') ? $id_terceiro->first()->plate : $this->vehicles_plate;
             $this->third_party_id_updated = $id_terceiro->first()->id;
         }
+
     }
 
     public function render()
