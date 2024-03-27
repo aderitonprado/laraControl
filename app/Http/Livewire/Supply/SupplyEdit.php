@@ -57,7 +57,7 @@ class SupplyEdit extends Component
         $this->thirdparties = ThirdParty::all();
 
         $this->supply_pump      = $this->supply->supply_pump;
-        $this->supply_date      = $this->supply->supply_date->format('Y-m-d');
+        $this->supply_date      = $this->supply->supply_date;
         $this->warehouse        = $this->supply->warehouse;
         $this->third_party_code = $this->supply->third_party_code;
         $this->supply_driver    = $this->supply->supply_driver;
