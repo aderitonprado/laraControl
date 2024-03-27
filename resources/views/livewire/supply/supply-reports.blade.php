@@ -84,7 +84,7 @@
                 <th>Terceiro</th>
                 <th>Frota</th>
                 <th>KM</th>
-                <th>Quantidade</th>
+                <th>Quant</th>
                 <th>R$ Unit</th>
                 <th>R$ Total</th>
             </tr>
