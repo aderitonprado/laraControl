@@ -55,7 +55,9 @@ class ThirdPartyControllerApi extends Controller
             return $queryBuilder->where('status', '=', $sts);
         });
 
-        return $array['data'] = $this->take ? $thirdparties->paginate($this->take) : $thirdparties->paginate(15);
+        $total = $thirdparties->count();
+
+        return $array['data'] = $this->take ? $thirdparties->paginate($this->take) : $thirdparties->paginate($total);
     }
 
     public function show()
