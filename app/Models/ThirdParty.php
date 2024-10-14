@@ -16,4 +16,9 @@ class ThirdParty extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function supplies()
+    {
+        return $this->hasMany(Supply::class);
+    }
+
 }

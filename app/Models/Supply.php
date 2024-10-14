@@ -66,7 +66,7 @@ class Supply extends Model
         return $this->attributes['supply_date'] = (\DateTime::createFromFormat('d/m/Y H:i:s', $prop))->format('Y-m-d H:i:s');
     }
 
-    public function thirdy_parties()
+    public function thirdyParties()
     {
         return $this->belongsTo(ThirdParty::class);
     }
@@ -75,7 +75,6 @@ class Supply extends Model
     {
         return $this->belongsTo(User::class);
     }
-
     public function getSuppliesWithThird($id)
     {
         return $this->join('third_parties', 'supplies.third_party_id', '=', 'third_parties.id')

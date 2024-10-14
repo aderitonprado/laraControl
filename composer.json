@@ -7,15 +7,16 @@
     "require": {
         "php": "^7.3|^8.1",
         "barryvdh/laravel-debugbar": "^3.7",
+        "doctrine/dbal": "^3.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^10.0",
         "laravel/jetstream": "^2.4",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.5",
-        "doctrine/dbal": "^3.0",
-        "monolog/monolog": "^2.5",
-        "psr/log": "^2.0"
+        "monolog/monolog": "^3.0",
+        "psr/log": "^2.0",
+        "tymon/jwt-auth": "^2.1"
     },
     "require-dev": {
         "spatie/laravel-ignition": "^2.0",
